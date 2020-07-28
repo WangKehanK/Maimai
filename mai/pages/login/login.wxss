@@ -1,0 +1,81 @@
+/* pages/logo/logo.wxss */
+@import '../../style/weui.wxss';
+@import '../index/index.wxss';
+.login{
+  width: 100%;
+  padding-top: 50rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.logo>image{
+  margin-top:200rpx;
+  flex-direction: center;
+  width:690rpx;
+  height: 200rpx;
+}
+.info{
+  padding-left: 50rpx;
+  padding-right: 50rpx;
+  display: flex;  
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 34rpx;
+  color: #999;
+}
+.infoTitle{
+  margin-top: 50rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.infoTitle>text{
+  display: flex;
+  justify-content: center;
+  font: bold;
+}
+.infoTitle>.text{
+  padding: 0 20rpx;
+}
+.infoTitle>.left{
+  height: 2rpx;
+  background: #999;
+  flex: 1;
+}
+.infoTitle>.right{
+  height: 2rpx;
+  background: #999;
+  flex: 1;
+}
+.infoCon{
+  margin-top: 20rpx;
+  text-align: left;
+  font: bold;
+}
+.loginBtn{
+  margin-top:50rpx;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10rpx 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+   background: -webkit-linear-gradient(left,yellow,orange,pink);
+  border-radius: 14rpx;
+  font-size: 38rpx;
+}
+.info .slogan{
+  font-size: 29rpx;
+  position: fixed;
+  bottom: 0;
+  
+}
+.weui-footer{
+      bottom: 0;
+     position: fixed;
+}

@@ -1,0 +1,65 @@
+<!--pages/wantDetail/wantDetail.wxml-->
+<view class="goodDetailCon">
+    <view class="topCon">
+        <view class="userInfo">
+            <image src="{{wantDetail.headimg}}" />
+            <view class="nameDate">
+                <text>{{wantDetail.nickName}}</text>
+                <text>{{wantDetail.createTime}}</text>
+            </view>
+        </view>
+        <view class="priceCon">
+            <text>￥{{wantDetail.goodsMinPrice}}~￥{{wantDetail.goodsMaxPrice}}</text>
+        </view>
+    </view>
+    <view class="detailCon">
+        <view class="title">
+            <text>{{wantDetail.goodsTitle}}</text>
+        </view>
+        <view class="content">
+            <text>{{wantDetail.goodsDesc}}</text>            
+        </view>
+    </view>
+    <view class="info">
+        <text>*温馨提示</text>
+        <text>争做环保卫士，共建绿色校园</text>
+    </view>
+     <view class="aboutUser">
+        <text>买家信息</text>
+    </view>
+    <view class='aboutUserInfo'>
+       <image src="{{wantDetail.headimg}}" />
+        <view class="aboutUserName">
+          <text>{{wantDetail.nickName}}</text>
+          <text>{{wantDetail.schoolName}},{{wantDetail.deptName}},{{wantDetail.majorName}}</text>
+        </view>
+    </view>
+    <view class='userContactPhone'>
+      联系电话：{{wantDetail.phone}}
+    </view>
+    <view class='userContactAddr'>
+      详细地址：{{wantDetail.addr}}
+    </view>
+</view>
+<view class="white-bg">
+  <view class="collect-view" wx:if="{{collectId==0}}" catchtap="addCollect" data-id="{{wantDetail.id}}">
+    <image src='../../images/collect.png'/>
+    <text>收藏</text>
+  </view>
+  <view class="collect-view" wx:else catchtap="delCollect" data-id="{{collectId}}" >
+    <image src='../../images/collect_active.png'/>
+    <text>收藏</text>
+  </view>
+</view>
+<view class="confirmOrder" bindtap="callPhone" data-phone="{{wantDetail.phone}}">
+  <text>联系</text>
+</view>
+
+
+
+<!--操作按钮-->
+<view class="handleCon">
+    <view class="reportBtn" bindtap="goReport" data-id="{{wantDetail.id}}" data-violatorid="{{wantDetail.userId}}">
+            <text>投诉</text>
+    </view>
+</view>

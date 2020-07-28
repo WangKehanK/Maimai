@@ -1,0 +1,178 @@
+<!--index.wxml-->
+<view class="indexCon">
+  <!--最新发布-->
+    <view class="weui-search-bar">
+      <view class="weui-search-bar__form">
+        <view class="weui-search-bar__box">
+          <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+          <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" bindconfirm='searchConfirm' />
+          <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+            <icon type="clear" size="14"></icon>
+          </view>
+        </view>
+        <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+          <icon class="weui-icon-search" type="search" size="14"></icon>
+          <view class="weui-search-bar__text">搜索</view>
+        </label>
+      </view>
+      <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+    </view>
+    <view class="top_notice">
+      <view class="notice_title">
+        <label>公告:</label>
+      </view>
+      <swiper class="swiper_notice" circular vertical autoplay>
+          <swiper-item id="item01" bindtap="checkNotice"><text> 好好学习，天天向上</text></swiper-item>
+          <swiper-item id="item02" bindtap="checkNotice"><text>注意上当受骗，做遵纪守法好青年！</text></swiper-item>
+
+      </swiper>
+    </view>
+    <view class="weui-grids">
+      <!-- <a class="weui-grid" wx:for="{{postCateMain}}" wx:key="{{item.id}}">
+        <view class="weui-grid__icon" bindtap="goList" data-id="{{item.id}}" data-name="{{item.typeName}}">
+          <image src="../images/sale.png" alt></image>
+        </view>
+        <view class="weui-grid__label">{{item.typeName}}</view>
+        <text>{{item.id}}</text>
+      </a> -->
+      <a class="weui-grid" bindtap="goList" data-id="{{postCateBook.id}}" data-name="{{postCateBook.typeName}}" >
+        <view class="weui-grid__icon">
+          <image class='weui-grid_image' src="../../images/book.svg" alt></image>
+        </view>
+        <view class="weui-grid__label">{{postCateBook.typeName}}</view>
+		  </a>
+      <a class="weui-grid" bindtap="goList" data-id="{{postCateEle.id}}" data-name="{{postCateEle.typeName}}" >
+        <view class="weui-grid__icon">
+          <image class='weui-grid_image' src="../../images/electronic.svg" alt></image>
+        </view>
+        <view class="weui-grid__label">{{postCateEle.typeName}}</view>
+		  </a>
+      <a class="weui-grid" bindtap="goList" data-id="{{postCateEle.id}}" data-name="{{postCateEle.typeName}}" >
+        <view class="weui-grid__icon">
+          <image class='weui-grid_image' src="../../images/fashion.svg" alt></image>
+        </view>
+        <view class="weui-grid__label">{{postCateLife.typeName}}</view>
+		  </a>
+      <a class="weui-grid" bindtap="goClass">
+        <view class="weui-grid__icon">
+          <image src="../images/m.png" alt></image>
+        </view>
+        <view class="weui-grid__label">更多</view>
+		  </a>
+    </view>
+      <!--顶部导航栏-->
+    <view class="swiper-tab">
+      <view class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">二手商品</view> 
+      <view class="tab-item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">求购商品</view>
+      <!-- <view class="section">
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{schoolArray}}">
+          <image class="school" src="../../images/school.png"></image>
+          <view class="choosePicker">
+            {{schoolArray[index]}}
+          </view>
+        </picker>
+      </view> -->
+    </view>
+    <!--内容主体-->
+    <swiper style="height: {{clientHeight?clientHeight+'px':'auto'}}" class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange">
+        <!-- 二手商品 -->
+      <swiper-item>
+      <scroll-view class="scrollview" scroll-y="{{true}}" style="height: {{clientHeight?clientHeight+'px':'auto'}}; overflow-y:hidden;" bindscrolltolower="scrollbot">
+          <view class="goodMain" wx:if="{{goodList.length>0}}">
+            <view class="goodCon">
+              <view class="goodItem" wx:for="{{goodList}}" wx:key="id"  bindtap="goGoodCon" data-id="{{item.id}}" data-userId="{{item.userId}}" data-goodno="{{item.goodsNo}}">
+                <view class="goodItem_box">
+                  <view class="imgBox">
+                    <image src="{{imgHost+item.goodsImgs[0]}}" mode="aspectFill"/>
+                  </view>
+                  <view class="infoBox">
+                    <text class="title">{{item.goodsTitle}}</text>
+                    <view class="price"><text class="small">
+                    ￥</text>{{item.goodsPrice}}</view>
+                  </view>
+                  <view class="user" catchtap="goUserGoods" data-userId="{{item.userId}}" data-username="{{item.nickName}}" data-usercover="{{item.headimg}}">
+                    <image src="{{item.headimg}}" />     
+                    <view class="userInfo">
+                      <text class="userName">{{item.nickName}}</text>
+                      <text class="date">{{item.createTime}}</text>
+                      <view class="userStatus">
+                        <text wx:if="{{item.userStatus=='1010'}}">未认证</text>
+                        <text wx:if="{{item.userStatus=='1011'}}">认证通过</text>
+                        <text wx:if="{{item.userStatus=='1012'}}">已冻结</text>
+                        <text wx:if="{{item.userStatus=='1013'}}">认证中</text>
+                        <text wx:if="{{item.userStatus=='1014'}}">认证未通过</text>
+                      </view>
+                    </view>         
+                  </view>
+                </view>
+              </view>
+            </view>
+            <!--加载更多-->
+            <view class="weui-loadmore" hidden="{{!isShowLoadMore1}}">
+              <view class="weui-loading" hidden="{{loadText1!='加载中'}}"></view>
+              <text>{{loadText1}}</text>
+            </view>
+          </view>
+          <!--没有数据-->
+          <view class="nodata" wx:else>
+            <image src="../../images/nodata.png"/>
+            <text>暂时没有相关数据</text>
+          </view>
+      </scroll-view>
+      </swiper-item>
+      <!-- 求购商品 -->
+      <swiper-item>
+        <scroll-view scroll-y="{{true}}" style="height: {{clientHeight?clientHeight+'px':'auto'}}" bindscrolltolower="scrollbot">
+          <view wx:if="{{wantList.length>0}}">
+            <view class="wantCon">
+              <view class="wantItem" wx:for="{{wantList}}" wx:key="id"  bindtap="goGoodCon" data-id="{{item.id}}" data-userId="{{item.userId}}" data-goodno="{{item.goodsNo}}">
+                <view class="goodItem_box">
+                  <view class="infoBox">
+                    <text class="title">{{item.goodsTitle}}</text>
+                    <text class="desc">{{item.goodsDesc}}</text>
+                    <view class="price"><text class="t">价格区间:</text>
+                    <text class="small">￥</text>{{item.goodsMinPrice}}~<text class="small">￥</text>{{item.goodsMaxPrice}}</view>
+                  </view>
+                  <view class="user" catchtap="goUserGoods" data-userId="{{item.userId}}" data-username="{{item.nickName}}" data-usercover="{{item.headimg}}">
+                    <image src="{{item.headimg}}" />     
+                   <view class="userInfo">
+                      <text class="userName">{{item.nickName}}</text>
+                      <text class="date">{{item.createTime}}</text>
+                      <view class="userStatus">
+                        <text wx:if="{{item.userStatus=='1010'}}">未认证</text>
+                        <text wx:if="{{item.userStatus=='1011'}}">已认证</text>
+                        <text wx:if="{{item.userStatus=='1012'}}">已冻结</text>
+                        <text wx:if="{{item.userStatus=='1013'}}">认证中</text>
+                        <image class='xinyu-img' src='../../images/xinyu2.png'></image>
+                        <text class='xinyu'>{{item.creditVal}}</text>
+                      </view>
+                    </view>         
+                  </view>
+                </view>
+              </view>
+            </view>
+            <!--加载更多-->
+            <view class="weui-loadmore" hidden="{{!isShowLoadMore2}}">
+              <view class="weui-loading" hidden="{{loadText2!='加载中'}}"></view>
+              <text>{{loadText2}}</text>
+            </view>
+          </view>
+          <!--没有数据-->
+          <view class="nodata" wx:if="{{wantList.length==0}}">
+            <image src="../../images/nodata.png"/>
+            <text>暂时没有相关数据</text>
+          </view>
+        </scroll-view>
+      </swiper-item>
+    </swiper> 
+</view>
+<!--发布按钮-->
+<view class="add_con" bindtap="goAddGood">
+    <text>二手</text>
+</view>
+<view class="want_con" bindtap="goWantGood">
+    <text>求购</text>
+</view>
+<view wx:if="{{upTob}}" bindtap="goTob">
+  <text class="iconfont icon-uptob"></text>
+</view>

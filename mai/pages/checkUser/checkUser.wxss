@@ -1,0 +1,102 @@
+.weui-uploader__file{float:left;margin-right:9px;margin-bottom:9px;margin-left: 30px;}
+.weui-uploader__img{display:block;width:79px;height:79px}
+.weui-uploader__bd{margin-bottom:-4px;margin-right:-9px;overflow:hidden}
+.weui-uploader__input-box{float:left;position:relative;margin-right:9px;margin-bottom:9px;width:160rpx;
+height:160rpx;border:1px solid #d9d9d9;margin-left: 30px;}
+.weui-uploader__input-box:after,
+.weui-uploader__input-box:before{content:" ";position:absolute;top:50%;left:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);background-color:#d9d9d9}
+.weui-uploader__input-box:before{width:2px;height:39.5px}
+.weui-uploader__input-box:after{width:39.5px;height:2px}
+.weui-uploader__input-box:active{border-color:#999}
+.weui-uploader__input-box:active:after,
+.weui-uploader__input-box:active:before{background-color:#999}
+.weui-uploader__input{position:absolute;z-index:1;top:0;left:0;width:100%;height:100%;opacity:0;}
+.weui-cell__bd{
+  margin-left: 40rpx;
+  margin-right: 20rpx;
+}
+.weui-cells{position:relative;margin-top:1.17647059em;background-color:#fff;line-height:1.41176471;font-size:17px}
+.weui-cells:before{top:0;border-top:1rpx solid #d9d9d9}
+.weui-cells:after,
+.weui-cells:before{content:" ";position:absolute;left:0;right:0;height:1px;color:#d9d9d9}
+.weui-cells:after{bottom:0;border-bottom:1rpx solid #d9d9d9}
+.weui-cells__title{margin-top:.77em;margin-bottom:.3em;padding-left:15px;padding-right:15px;color:#999;font-size:14px}
+.weui-cells_after-title{margin-top:0}
+.weui-cell{padding:11.5px 17px;position:relative;display:-webkit-box;display:-webkit-flex;display:flex;-webkit-box-align:center;-webkit-align-items:center;align-items:center}
+.weui-cell:before{content:" ";position:absolute;top:0;right:0;height:1px;border-top:1rpx solid #d9d9d9;color:#d9d9d9;left:15px}.weui-cell:first-child:before{display:none}
+.weui-cell__ft{text-align:right;color:#999}
+.tj{
+  background: -webkit-linear-gradient(left,pink,lightblue,skyblue);
+  color: #fff;
+}
+.shenhe{
+  width: 100%;
+  height: 80rpx;
+  background: -webkit-linear-gradient(left,pink,lightblue,skyblue);
+  color: #fff;
+  text-align: center;
+  border-radius: 50rpx;
+  padding-top: 20rpx;
+}
+.user-info{
+  clear:both;
+}
+.uploader_picture{
+  margin-top: 40rpx;
+}
+.top{
+  width: 650rpx;
+  margin-left: 60rpx;
+}
+.text{
+  font-size: 35rpx;
+}
+.zhuanye{
+  width: 150rpx;
+}
+.zhuanye-text{
+  width: 300rpx;
+}
+/*上传图片*/
+.upload{
+    padding: 20rpx;
+    background: #fff;
+}
+.upload_title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 34rpx;
+    margin-left: 50rpx;
+}
+.num{
+    color: #666;
+}
+.photoImgs{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 20rpx 0;
+    margin-left: 30rpx;
+}
+.photoImgs .img{
+    flex: 0 0 25%;
+    box-sizing: border-box;
+    align-self: center;
+    text-align: center;
+    padding-top: 10rpx;
+    position: relative;
+}
+.img image{
+    width: 150rpx;
+    height: 150rpx; 
+    box-sizing: border-box;
+}
+.img image.close{
+    width:40rpx;
+    height: 40rpx;
+    position: absolute;
+    top: -10rpx;
+    right: -10rpx;
+}

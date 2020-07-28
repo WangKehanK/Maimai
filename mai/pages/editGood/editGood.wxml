@@ -1,0 +1,56 @@
+<!--pages/add/add.wxml-->
+<view class="post">
+    <view class="postTitle">
+        <input placeholder="名称" placeholder-style="color:#dfdfdf;font-size:34rpx;" bindinput="titleVal" auto-focus value="{{title}}"/>
+    </view>
+    <view class="postCon">
+        <textarea placeholder="具体简介" maxlength="-1" value="{{content}}" auto-height style="min-height:200rpx;" placeholder-style="color:#dfdfdf;font-size:34rpx;" bindinput="contentVal" data-texttype="info"/>        
+    </view>
+    <!--图片-->
+    <view class='upload'>
+        <view class='upload_title'>
+            <text>选择图片（默认第一张图为封面图）</text>
+            <text class='num'>{{photos.length}}/9</text>
+        </view>
+        <view class='photoImgs'>
+            <view class='img' wx:for="{{photos}}" wx:key="{{index}}">
+                <image src='../../images/close.png' class="close" data-index="{{index}}" bindtap='delImg'></image>
+                <image src='{{imgHost}}{{item}}' bindtap='previewImage' data-url="{{imgHost}}{{item}}" mode="aspectFill"></image>
+            </view>
+            <view class='img' wx:if="{{photos.length<9}}">
+                <image src='../../images/add-photo.png' bindtap='chooseImage'></image>
+            </view>
+        </view>
+    </view>
+
+    <view class="cell_group">
+        <view class="price">
+            <view class="left"> 
+                <image src='../../images/price.png' class="priceBtn"></image>
+                <input type="digit" placeholder="请输入您的价格" value="{{price}}" placeholder-style="color:#dfdfdf;font-size:34rpx;" bindinput="priceVal"/>
+            </view>
+        </view>
+
+        <view class="classify" bindtap="chooseClassify">
+            <view class="left"> 
+                <image src='../../images/classify.png' class="classifyBtn"></image>
+                <text>请选择类型</text>
+            </view>
+            <view class="right">
+                <text>{{typeVal.typeName}}</text>
+                <image src='../../images/right.png' class="rightBtn"></image>
+            </view>
+        </view>
+
+        <view class="info">
+            <text>*温馨提示</text>
+            <text>请确保合法性，不得涉及违法犯罪</text>
+                    </view>
+    </view>
+
+    <view class="postBtnCon">
+        <button class="postBtn" bindtap="postFun" data-id="{{id}}">修改</button>
+    </view>
+</view>
+
+<canvas canvas-id='attendCanvasId' style="width: {{cw}}px; height: {{ch}}px;" class="mycanvas"></canvas>

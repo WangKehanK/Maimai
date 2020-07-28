@@ -1,0 +1,92 @@
+    <!--顶部导航栏-->
+  <view class="swiper-tab">
+    <view class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">我的二手</view> 
+    <view class="tab-item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">我的需求</view>
+  </view>
+  <!--内容主体-->
+<swiper  style="height: {{clientHeight?clientHeight+'px':'auto'}}" class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange">
+  <!-- 二手商品 -->
+  <swiper-item>
+    <scroll-view scroll-y="{{true}}" style="height: {{clientHeight?clientHeight+'px':'auto'}}" bindscrolltolower="scrollbot">
+    <view class='meBottom'>
+    <view class="goodCon" wx:if="{{goodList.length>0}}">
+        <view class="goodItem" wx:for="{{goodList}}" wx:key="item.id" bindtap="goGoodCon" data-id="{{item.id}}" data-mid="{{item.mid}}" data-userId="{{item.userId}}" >
+          <view class="goodItem_box">
+            <view class="imgBox">
+              <image src="{{imgHost+item.goodsImgs[0]}}"  mode="aspectFill"/>
+            </view>
+            <view class="infoBox">
+              <text class="title">{{item.goodsTitle}}</text>
+              <view class="price"><text class="small">￥</text>{{item.goodsPrice}}</view>
+              <text class="cate">{{item.goodsTypeName}}</text>
+            </view>
+          </view>
+          <view class="handle">
+          <!-- 商品状态：1020——在售，1021——已下架 ，1022——已出售-->
+            <view class="update" catchtap="goGoodShangJia" data-id="{{item.id}}" data-status="{{item.status}}" wx:if="{{item.status==1020}}">
+              <text>下架</text>
+            </view>
+            <view class="update" catchtap="goGoodShangJia" data-id="{{item.id}}" data-status="{{item.status}}" wx:if="{{item.status==1021}}" style='color:red'>
+              <text>上架</text>
+            </view>
+            <view style="display:none" wx:if="{{item.status==1022}}">
+            </view>
+            <view wx:else class="edit" catchtap="goEditGood" data-id="{{item.id}}">
+              <text>修改</text>
+            </view>
+            <view class="del" catchtap="goDelGood" data-id="{{item.id}}">
+              <text>删除</text>
+            </view>
+          </view>
+          <view class="maidiaole" wx:if="{{item.status==1022}}">
+            <image src="../../images/maidiaole.png"></image>
+          </view>
+        </view>
+    </view>
+    <!--没有数据-->
+    <view class="nodata" wx:if="{{goodList.length==0}}">
+      <image src="../../images/nodata.png"/>
+      <text>暂时没有相关数据</text>
+    </view>
+  </view>
+  </scroll-view>
+</swiper-item>
+ <!-- 求购商品 -->
+  <swiper-item>
+    <scroll-view scroll-y="{{true}}" style="height: {{clientHeight?clientHeight+'px':'auto'}}" bindscrolltolower="scrollbot">
+ <view class='meBottom'>
+    <view class="goodCon" wx:if="{{wantList.length>0}}">
+        <view class="goodItem" wx:for="{{wantList}}" wx:key="item.id" bindtap="goWantCon" data-id="{{item.id}}" data-mid="{{item.mid}}">
+          <view class="goodItem_box">
+           <view class="infoBox">
+              <text class="title">{{item.goodsTitle}}</text>
+              <view class="price"><text class="small">￥</text>{{item.goodsMinPrice}}~<text class="small">￥</text>{{item.goodsMaxPrice}}</view>
+              <text class="cate">{{item.goodsTypeName}}</text>
+            </view>
+          </view>
+          <view class="handle">
+          <!-- 商品状态：1031——上架，1030——已下架 -->
+            <view class="update" catchtap="goWantShangJia" data-id="{{item.id}}" data-status="{{item.status}}" wx:if="{{item.status==1031}}">
+              <text>下架</text>
+            </view>
+            <view class="update" catchtap="goWantShangJia" data-id="{{item.id}}" data-status="{{item.status}}" wx:if="{{item.status==1030}}">
+              <text>上架</text>
+            </view>
+            <view class="edit" catchtap="goEditWant" data-id="{{item.id}}">
+              <text>修改</text>
+            </view>
+            <view class="del" catchtap="goDelWant" data-id="{{item.id}}">
+              <text>删除</text>
+            </view>
+          </view>
+        </view>
+    </view>
+      <!--没有数据-->
+    <view class="nodata" wx:if="{{wantList.length==0}}">
+      <image src="../../images/nodata.png"/>
+      <text>暂时没有相关数据</text>
+    </view>
+  </view>
+  </scroll-view>
+</swiper-item>
+</swiper>

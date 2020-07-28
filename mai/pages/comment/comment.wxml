@@ -1,0 +1,15 @@
+<!--pages/report/report.wxml-->
+<view class="report">
+    <view class="reportBox">
+        <textarea placeholder="请输入您的评价" placeholder-style="font-size:30rpx;color:#bfbfbf;" bindinput="contentVal" value="{{content}}"/>
+    </view>
+   <view class="star-title">描述相符：</view>
+    <view class="star-pos">
+      <image class='stars' bindtap="changeColor"  data-no="{{item}}" wx:for="{{stardata}}" wx:key="{{item}}"
+            src="{{flag>=item? '../../images/star1.png': '../../images/star0.png'}}" />
+      <view class='star-desc'>{{startext}}</view>
+    </view>
+    <view class="report_btn" bindtap="reportFun">
+        <text>提交评价</text>
+    </view>
+</view>

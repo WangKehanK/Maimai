@@ -1,0 +1,41 @@
+<view class='me'>
+  <view class='meTop'>
+      <view class="meTopuserInfo">
+        <view class='meTopuserIcon'>
+          <image src="{{userInfo.avatarUrl}}"/>
+        </view>
+        <view class='meTopuserName'>
+          <text>{{userInfo.nickName}}</text>
+        </view>
+      </view>
+  </view>
+   <view class='under'>
+  <form bindsubmit="formSubmit" bindreset="formReset">
+  <view  class="weui-cell">
+          <text class="weui-cell__bd">邮箱：</text>
+          <input name="email" placeholder="请输入邮箱"  value="{{userInfo.email}}" />
+  </view>
+  <view  class="weui-cell">
+          <text class="weui-cell__bd">QQ：</text>
+          <input name="qq" placeholder="请输入QQ" value="{{userInfo.qq}}" />
+  </view>
+  <view class="weui-cell">
+          <text class="weui-cell__bd">手机号：</text>  
+          <input name="phone" placeholder="请输入手机号"  value="{{userInfo.phone}}" />  
+  </view>
+  
+  <view class="weui-cell">
+          <text class="weui-cell__bd">详细地址：</text> 
+          <input name="addr" placeholder="如：24#419"  value="{{userInfo.addr}}" />   
+  </view>
+  <view class="weui-cell">
+          <text class="weui-cell__bd person-desc">个人描述：</text> 
+          <textarea name="remark" class="weui-textarea" placeholder="请输入个人描述" style="height: 3.3em" value="{{userInfo.remark}}"/>
+  </view>
+  <view class="btn-area">
+    <button class="tj" formType="submit">提交</button>
+    <button formType="reset">重置</button>
+  </view>
+</form>
+</view>
+</view>

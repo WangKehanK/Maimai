@@ -1,0 +1,46 @@
+<!--pages/add/add.wxml-->
+<view class="post">
+    <view class="postTitle">
+        <input placeholder="请输入求购商品名称" placeholder-style="color:#dfdfdf;font-size:34rpx;" bindinput="titleVal" value="{{title}}"/>
+    </view>
+    <view class="postCon">
+        <textarea placeholder="请输入对该求购商品的具体简介" value="{{content}}" maxlength="-1" auto-height style="min-height:200rpx;" placeholder-style="color:#dfdfdf;font-size:34rpx;" bindinput="contentVal" data-texttype="info"/>        
+    </view>
+    <view class="cell_group">
+         <view class="price">
+            <view class="left"> 
+                <image src='../../images/price.png' class="priceBtn"></image>
+                <input type="digit" placeholder="请输入您期望的最高价格" value="{{maxPrice}}" placeholder-style="color:#dfdfdf;font-size:34rpx;" bindinput="maxPriceVal"/>
+            </view>
+        </view>
+        <view class="price">
+            <view class="left"> 
+                <image src='../../images/price.png' class="priceBtn"></image>
+                <input type="digit" placeholder="请输入您期望的最低价格" value="{{minPrice}}"placeholder-style="color:#dfdfdf;font-size:34rpx;" bindinput="minPriceVal"/>
+            </view>
+        </view>
+        <view class="classify" bindtap="chooseClassify">
+            <view class="left"> 
+                <image src='../../images/classify.png' class="classifyBtn"></image>
+                <text>请选择类型</text>
+            </view>
+            <view class="right">
+                <text>{{typeVal.typeName}}</text>
+                <image src='../../images/right.png' class="rightBtn"></image>
+            </view>
+        </view>
+
+        <view class="info">
+            <view class="infoBox">
+                <text>*温馨提示</text>
+                <text>请确保合法性，不得涉及违法犯罪</text>
+            </view>
+        </view>
+    </view>
+
+    <view class="postBtnCon">
+        <button class="postBtn" bindtap="postFun" data-id="{{id}}">修改</button>
+    </view>
+</view>
+
+<canvas canvas-id='attendCanvasId' style="width: {{cw}}px; height: {{ch}}px;" class="mycanvas"></canvas>

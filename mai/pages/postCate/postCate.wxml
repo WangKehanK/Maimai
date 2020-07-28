@@ -1,0 +1,12 @@
+<!--pages/postCate/postCate.wxml-->
+<view class="postCate">
+    <view class="cate_item {{current_cate==index?'active':''}}" wx:for="{{postCate}}" wx:key="{{item.id}}">
+        <view bindtap="changeCate" data-index="{{index}}">
+            <text>{{item.typeName}}</text>
+        </view>
+    </view>
+
+    <view class="cate_submit" bindtap="cateSubmit">
+        <text>确定</text>
+    </view>
+</view>

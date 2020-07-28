@@ -1,0 +1,21 @@
+<!--pages/classify/classify.wxml-->
+<view class="classify">
+    <view class="cate_item" wx:for="{{postCate}}" wx:key="{{item.id}}" >
+        <view bindtap="goList" data-id="{{item.id}}" data-name="{{item.typeName}}">
+            <text>{{item.typeName}}</text>
+        </view>
+    </view>
+  <!-- <view class="cu-bar bg-white solid-bottom margin-bottom=30rpx">
+    <view class="action">
+      <text class="cuIcon-title text-orange "></text> 商品分类
+    </view>
+  </view>
+  <view class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}"wx:for="{{postCate}}" wx:key="{{item.id}}">
+    <view class="cu-item {{menuArrow?'arrow':''}}" bindtap="goList" data-id="{{item.id}}"data-name="{{item.typeName}}">
+      <navigator class="content" hover-class="none" url="../list/list" open-type="redirect">
+        <text class="cuIcon-discoverfill text-orange"></text>
+        <text class="text-grey">{{item.typeName}}</text>
+      </navigator>
+    </view>
+  </view> -->
+</view>

@@ -1,0 +1,39 @@
+<!--index.wxml-->
+<view class="indexCon">
+  <!--最新发布-->
+  <view class="goodMain" wx:if="{{goodList.length>0}}">
+      <view class="goodHead">
+         <text>最新发布</text>
+      </view>
+      <view class="goodCon">
+         <view class="goodItem" wx:for="{{goodList}}" wx:key="item.id"  bindtap="goGoodCon" data-id="{{item.id}}" data-userId="{{item.userId}}" data-goodno="{{item.goodsNo}}">
+            <view class="goodItem_box">
+              <view class="imgBox">
+                <image src="{{imgHost+item.goodsImgs[0]}}" mode="aspectFill"/>
+              </view>
+              <view class="infoBox">
+                <text class="title">{{item.goodsTitle}}</text>
+                <view class="price"><text class="small">￥</text>{{item.goodsPrice}}</view>
+              </view>
+              <view class="user" catchtap="goUserGoods" data-userId="{{item.userId}}" data-username="{{item.nickName}}" data-usercover="{{item.headimg}}">
+                <image src="{{item.headimg}}" />     
+                <view class="userInfo">
+                  <text class="userName">{{item.nickName}}</text>
+                  <text class="date">{{item.createTime}}</text>
+                </view>         
+              </view>
+            </view>
+         </view>
+      </view>
+      <!--加载更多-->
+      <view class="weui-loadmore" hidden="{{!isShowLoadMore}}">
+        <view class="weui-loading" hidden="{{loadText!='加载中'}}"></view>
+        <text>{{loadText}}</text>
+      </view>
+  </view>
+  <!--没有数据-->
+  <view class="nodata" wx:if="{{goodList.length==0}}">
+      <image src="../../images/nodata.png"/>
+    <text>暂时没有相关数据</text>
+  </view>
+</view>

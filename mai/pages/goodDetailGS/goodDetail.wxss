@@ -1,0 +1,205 @@
+.goodDetailCon{
+    padding: 20rpx;
+    padding-bottom: 120rpx;
+}
+.topCon{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.userInfo{
+    display: flex;
+}
+.userInfo>image{
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+    margin-right: 20rpx;
+}
+.nameDate{
+    display: flex;
+    flex-direction: column;
+}
+.nameDate>text:first-child{
+    font-size: 30rpx;
+    color: #202020;
+}
+.nameDate>text:nth-child(2){
+    font-size: 28rpx;
+    color: #9c9c9c;
+}
+.priceCon{
+    display: flex;
+    flex-direction: column;
+}
+.priceCon>text:first-child{
+    font-size: 36rpx;
+    color: #CA0C16;
+}
+/* .priceCon>text:last-child{
+    font-size: 28rpx;
+    color: #9c9c9c;
+} */
+.detailCon{
+    display: flex;
+    flex-direction: column;
+    padding-top: 30rpx;
+}
+.title{
+    font-size: 36rpx;
+    font-weight: bold;
+    line-height: 50rpx;
+    color: #202020;
+}
+.content{
+    margin-top: 20rpx;
+    margin-bottom: 20rpx;
+    font-size: 32rpx;
+    line-height: 50rpx;
+    color: #262626;
+}
+.imgs{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.imgs>image{
+    width: 100%;
+    height: auto;
+    margin-bottom: 10rpx;
+}
+.info{
+    padding: 10rpx;
+    font-size: 28rpx;
+    color: #CA0C16;
+    display: flex;
+    flex-direction: column;
+}
+.info>text{
+    margin-bottom: 10rpx;
+}
+.aboutUser{
+  border-left: 6rpx solid #F56250;
+  padding: 16rpx;
+  display: flex;
+  align-items: center;
+}
+.aboutUserInfo{
+  display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.aboutUserInfo>image{
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+    margin-right: 20rpx;
+}
+.aboutUserName{
+   display: flex;
+   flex-direction: column;
+}
+.aboutUserName>text:first-child{
+    font-size: 30rpx;
+    color: #202020;
+}
+.aboutUserName>text:nth-child(2){
+    font-size: 28rpx;
+    color: #9c9c9c;
+}
+.userContactPhone,.userContactAddr{
+  margin-left: 100rpx;
+  padding-top:5rpx;
+  font-size: 30rpx;
+  color: #202020;
+}
+.userContactAddr{
+  margin-bottom:5rpx;
+}
+.confirmOrder,.manageGood{
+    width: 80%;
+    height: 120rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #F56250;
+    font-size: 32rxp;
+    color: #fff;
+    position: fixed;
+    right: 0;
+    bottom:0;
+    box-shadow: 0rpx 10rpx 10rpx rgba(245, 98, 80, 0.8);
+} 
+
+.concatMe{
+  margin-top:30rpx;
+}
+.collect-view{
+  position: fixed;
+  left: 50rpx;
+  bottom:0;
+  width: 60rpx;
+}
+.comment-view{
+  position: fixed;
+  left: 170rpx;
+  bottom:0;
+  width: 60rpx;
+}
+.collect-view>image,.comment-view>image{
+  width: 60rpx;
+  height: 60rpx;
+}
+.collect-view>text,.comment-view>text{
+  text-align: center;
+  font-size: 26rpx;
+}
+.white-bg{
+  position: fixed;
+  left: 0;
+  bottom:0;
+  width: 100%;
+  height:120rpx;
+  background-color:#fff;
+}
+/* 操作按钮 */
+.handleCon{
+    position: fixed;
+    right: 10rpx;
+    bottom: 200rpx;
+}
+.share,.canvasImg,.reportBtn{
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 50%;
+    background: #F56250;
+    box-shadow:0rpx 0rpx 30rpx rgba(245, 98, 80, 0.8);
+    font-size: 30rpx;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.share{
+    margin-bottom: 30rpx;
+    padding: 0;
+}
+.canvasImg{
+    margin-bottom: 30rpx;
+}
+.yixiajia,.yichushou,.yishanchu{
+   width: 80%;
+    height: 120rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:#9c9c9c;
+    font-size: 32rxp;
+    color: #fff;
+    position: fixed;
+    right: 0;
+    bottom:0;
+    box-shadow: 0rpx 10rpx 10rpx rgba(112, 110, 110, 0.8);
+}

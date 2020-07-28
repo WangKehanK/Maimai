@@ -1,0 +1,73 @@
+<!--pages/me/me.wxml-->
+<view class='me'>
+  <view class='meTop'>
+      <view class="meTopuserInfo">
+        <view class='meTopuserIcon'>
+          <image src="{{userInfo.avatarUrl}}"/>
+        </view>
+        <view class='meTopuserName'>
+          <text>{{userInfo.nickName}}</text>
+        </view>
+        <view class='xinyu'>
+          <text>信誉积分：</text>
+          <image class='xinyu-img' src='../../images/xinyu.png'></image>
+          <text>{{userInfo.creditVal}}</text>
+        </view>
+        <view wx:if="{{userInfo.status=='1010'}}" class='meTopStatus'>
+          未认证
+        </view>
+        <view wx:if="{{userInfo.status=='1011'}}" class='meTopStatus'>
+          认证已通过
+        </view>
+        <view wx:if="{{userInfo.status=='1012'}}" class='meTopStatus'>
+          已冻结
+        </view>
+        <view wx:if="{{userInfo.status=='1013'}}" class='meTopStatus'>
+          认证中
+        </view>
+         <view wx:if="{{userInfo.status=='1014'}}" class='meTopStatus'>
+          认证未通过
+        </view>
+      </view>
+  </view>
+  <view class='under'>
+  <view class="weui-cells weui-cells_after-title">
+  <navigator url="/pages/checkUser/checkUser" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class='pictrue_style'>
+          <image src='../../images/renzheng.png'></image>
+      </view>
+      <view class="weui-cell__bd">认证中心</view>
+  </navigator>
+  <navigator url="/pages/information/information" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class='pictrue_style'>
+          <image src='../../images/information.png'></image>
+      </view>
+      <view class="weui-cell__bd">个人信息</view>
+  </navigator>
+  <navigator url="/pages/collect/collect" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class='pictrue_style'>
+          <image src='../../images/shoucang.png'></image>
+      </view>
+      <view class="weui-cell__bd">我的收藏</view>
+  </navigator>
+    <navigator url="/pages/mypublish/mypublish" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class='pictrue_style'>
+          <image src='../../images/fabu.png'></image>
+      </view>
+      <view class="weui-cell__bd">我发布的</view>
+  </navigator>
+  <navigator url="/pages/buy/buy" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class='pictrue_style'>
+          <image src='../../images/buy.png'></image>
+      </view>
+      <view class="weui-cell__bd">我买到的</view>
+  </navigator>
+  <navigator url="/pages/sale/sale" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class='pictrue_style'>
+          <image src='../../images/sale.png'></image>
+      </view>
+      <view class="weui-cell__bd">我卖出的</view>
+  </navigator>
+</view>
+  </view>
+</view>

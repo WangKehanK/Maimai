@@ -1,0 +1,9 @@
+<!--pages/report/report.wxml-->
+<view class="report">
+    <view class="reportBox">
+        <textarea placeholder="请输入投诉的原因" placeholder-style="font-size:30rpx;color:#bfbfbf;" bindinput="contentVal" value="{{content}}"/>
+    </view>
+    <view class="report_btn" bindtap="reportFun">
+        <text>提交投诉</text>
+    </view>
+</view>

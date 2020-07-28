@@ -1,0 +1,69 @@
+<!--pages/goodDetail/goodDetail.wxml-->
+<view class="goodDetailCon">
+    <view class="topCon">
+        <view class="userInfo" catchtap="goUserGoods" data-userid="{{goodDetail.userId}}" data-username="{{goodDetail.nickName}}" data-usercover="{{goodDetail.headimg}}">
+            
+            <view class="nameDate">
+                <text>管理员</text>
+                <text>{{goodDetail.createTime}}</text>
+            </view>
+        </view>
+        <view class="priceCon">
+            <text>废旧物品统一回收</text>
+        </view>
+    </view>
+    <view class="detailCon">
+        <view class="title">
+            <text>回收物品分类：{{goodDetail.goodsTypeName}}</text>
+        </view>
+        
+        <view class="imgs">
+            <block wx:for="{{goodDetail.goodsImgs}}" wx:for-index="index" wx:key="index">    
+                <image src="{{imgHost+item}}" mode="widthFix" bindtap='previewImage' data-url="{{imgHost}}{{item}}"/>   
+            </block>      
+        </view>
+    </view>
+    <view class="info">
+        <text>*温馨提示</text>
+        
+    </view>
+     <view class="aboutUser">
+        <text>通知</text>
+    </view>
+    <view class='aboutUserInfo'>
+       
+        <view class="aboutUserName">
+          为在校大学生提供废品回收，为校园环保工作添砖加瓦！
+        </view>
+    </view>
+    
+    
+</view>
+<view class="white-bg">
+  <view class="collect-view" wx:if="{{collectId==0}}" catchtap="addCollect" data-id="{{goodDetail.id}}">
+    <image src='../../images/collect.png'/>
+    <text>收藏</text>
+  </view>
+  <view class="collect-view" wx:else catchtap="delCollect" data-id="{{collectId}}" >
+    <image src='../../images/collect_active.png'/>
+    <text>收藏</text>
+  </view>
+</view>
+
+
+<view class="yixiajia" wx:if="{{goodDetail.status==1021}}">
+  <text>已下架</text>
+</view>
+
+<view class="yishanchu" wx:if="{{goodDetail.status==1023}}">
+  <text>已删除</text>
+</view>
+
+
+<!--操作按钮-->
+<view class="handleCon">
+    <button data-name="shareBtn" open-type="share" class="share">转发</button>
+    <view class="reportBtn" bindtap="goReport" data-id="{{goodDetail.id}}" data-violatorid="{{goodDetail.userId}}" hidden="{{isMine}}">
+            <text>投诉</text>
+    </view>
+ </view>

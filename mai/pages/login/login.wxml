@@ -1,0 +1,66 @@
+<!--pages/logo/logo.wxml-->
+<view wx:if="{{ version == '0'}}" >
+
+          <view class="goodMain" wx:if="{{goodList.length>0}}">
+            <view class="goodCon">
+              <view class="goodItem" wx:for="{{goodList}}" wx:key="item.id"  bindtap="goGoodCon" data-id="{{item.id}}" data-userId="{{item.userId}}" data-goodno="{{item.goodsNo}}" >
+                <view class="goodItem_box">
+                  <view class="imgBox">
+                    <image src="{{imgHost+item.goodsImgs[0]}}" mode="aspectFill"/>
+                  </view>
+                     <view class="infoBox">
+                    <text class="title">{{item.goodsTypeName}}</text>
+                    <view class="price"><text class="small">回收：</text>{{item.goodsTitle}}</view>
+                  </view>
+                  <view class="user" catchtap="goUserGoods" data-userId="{{item.userId}}" data-username="{{item.nickName}}" data-usercover="{{item.headimg}}" >
+                       
+                    <view class="userInfo">
+                      <text class="userName">简介:回收旧物类</text>
+                      <text class="date">{{item.createTime}}</text>
+                      <view class="userStatus">
+                        <text wx:if="{{item.userStatus=='1010'}}">未认证</text>
+                        <text wx:if="{{item.userStatus=='1011'}}">学生后勤部</text>
+                        <text wx:if="{{item.userStatus=='1012'}}">教授</text>
+                        <text wx:if="{{item.userStatus=='1013'}}">教师</text>
+                        <text wx:if="{{item.userStatus=='1014'}}">教务处</text>
+                        <image class='xinyu-img' src='../../images/xinyu2.png'></image>
+                        <text class='xinyu'>999</text>
+                      </view>
+                    </view>         
+                  </view>
+                </view>
+              </view>
+            </view>
+            <!-- 加载更多-->
+            <view class="weui-loadmore" hidden="{{!isShowLoadMore1}}">
+              <view class="weui-loading" hidden="{{loadText1!='加载中'}}"></view>
+              <text>{{loadText1}}</text>
+            </view>
+          </view> 
+          <!-- 没有数据-->
+          <view class="nodata" wx:else>
+            <image src="../../images/nodata.png"/>
+            <text>暂时没有相关数据</text>
+          </view>
+        
+</view>
+<view class="login" wx:else>
+  <view class="logo">
+    <image src="../../images/mt.png"></image>
+  </view>
+  <view class="info">
+    <view class="infoTitle">
+      <text class="left"></text>
+      <text class="text">授权申请</text>
+      <text class="right"></text>
+    </view>
+    <view class="infoCon">
+      <text>使用该小程序需要您允许登录授权，请点击下方登录按钮进行登录授权</text>
+    </view>
+    <button  class="loginBtn" open-type="getUserInfo" bindgetuserinfo='onGotUserInfo'>登录</button>
+  </view>
+ 
+<view class="weui-footer">
+    <view class="weui-footer__text">Copyright © 2020 MAIMAI</view>
+</view>
+</view>

@@ -1,0 +1,85 @@
+<!--pages/goodDetail/goodDetail.wxml-->
+<view class="goodDetailCon">
+    <view class="topCon">
+        <view class="userInfo" catchtap="goUserGoods" data-userid="{{goodDetail.userId}}" data-username="{{goodDetail.nickName}}" data-usercover="{{goodDetail.headimg}}">
+            <image src="{{goodDetail.headimg}}" />
+            <view class="nameDate">
+                <text>{{goodDetail.nickName}}</text>
+                <text>{{goodDetail.createTime}}</text>
+            </view>
+        </view>
+        <view class="priceCon">
+            <text>￥{{goodDetail.goodsPrice}}</text>
+        </view>
+    </view>
+    <view class="detailCon">
+        <view class="title">
+            <text>{{goodDetail.goodsTitle}}</text>
+        </view>
+        <view class="content">
+            <text>{{goodDetail.goodsDesc}}</text>            
+        </view>
+        <view class="imgs">
+            <block wx:for="{{goodDetail.goodsImgs}}" wx:for-index="index" wx:key="index">    
+                <image src="{{imgHost+item}}" mode="widthFix" bindtap='previewImage' data-url="{{imgHost}}{{item}}"/>   
+            </block>      
+        </view>
+    </view>
+    <view class="info">
+        <text>*温馨提示</text>
+        <text>争做环保卫士，共建绿色校园</text>
+    </view>
+     <view class="aboutUser">
+        <text>卖家信息</text>
+    </view>
+    <view class='aboutUserInfo'>
+       <image src="{{goodDetail.headimg}}" />
+        <view class="aboutUserName">
+          <text>{{goodDetail.nickName}}</text>
+          <text>{{goodDetail.schoolName}},{{goodDetail.deptName}},{{goodDetail.majorName}}</text>
+        </view>
+    </view>
+    <view class='userContactPhone'>
+      联系电话：{{goodDetail.phone}}
+    </view>
+    <view class='userContactAddr'>
+     详细地址：{{goodDetail.addr}}
+    </view>
+</view>
+<view class="white-bg">
+  <view class="collect-view" wx:if="{{collectId==0}}" catchtap="addCollect" data-id="{{goodDetail.id}}">
+    <image src='../../images/collect.png'/>
+    <text>收藏</text>
+  </view>
+  <view class="collect-view" wx:else catchtap="delCollect" data-id="{{collectId}}" >
+    <image src='../../images/collect_active.png'/>
+    <text>收藏</text>
+  </view>
+</view>
+<view class="confirmOrder" wx:if="{{goodDetail.status==1020}}" bindtap="confirmOrder" data-id="{{goodDetail.id}}"  hidden="{{isMine}}">
+  <text>立即咨询</text>
+</view>
+<view class="manageGood" wx:if="{{goodDetail.status==1020}}" bindtap="manageGood" data-id="{{goodDetail.id}}"  hidden="{{!isMine}}">
+  <text>管理我的商品</text>
+</view>
+<view class="yixiajia" wx:if="{{goodDetail.status==1021}}">
+  <text>已下架</text>
+</view>
+<view class="yichushou" wx:if="{{goodDetail.status==1022}}">
+  <text>已出售</text>
+</view>
+<view class="yishanchu" wx:if="{{goodDetail.status==1023}}">
+  <text>已删除</text>
+</view>
+
+
+<!--操作按钮-->
+<view class="handleCon">
+    <button data-name="shareBtn" open-type="share" class="share">转发</button>
+    <view class="reportBtn" bindtap="goReport" data-id="{{goodDetail.id}}" data-violatorid="{{goodDetail.userId}}" hidden="{{isMine}}">
+            <text>投诉</text>
+    </view>
+    <view class="reportBtn concatMe"bindtap="callPhone" data-phone="{{goodDetail.phone}}" hidden="{{isMine}}">
+        <text>联系</text>
+    </view>
+</view>

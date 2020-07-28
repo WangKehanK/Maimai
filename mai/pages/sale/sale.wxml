@@ -1,0 +1,45 @@
+<view wx:if="{{ordersList.length>0}}">
+  <view  class="orderDetails" wx:for="{{ordersList}}" wx:key="item.id"  >
+    <view class="orderListTitle">
+      <view class="userImg">
+        <image src="{{item.headimg}}"></image>
+      </view>
+      <text  class="userName">{{item.nickName}}</text>
+      <text class="orderStatus">{{item.statusName}}</text>
+            <button id="phone" wx:if="{{item.status=='1001'}}" bindtap="callPhone" class="weui-btn mini-btn" type="primary" size="mini" data-phone="{{item.contactTel}}">联系他</button>
+    </view>
+    <view class="orderListDetails" bindtap="toOrderDetail" data-goodsid="{{item.goodsId}}" data-userId="{{mid}}">
+      <view class="productImg">
+        <image src="{{imgHost+item.goodsImgs[0]}}"></image>
+      </view>
+      <view class="productInfo">
+        <view class="productTitle">{{item.goodsTitle}}</view>
+        <text class="productTime">{{item.createTime}}</text>
+        <view class="productNo">订单编号：{{item.ordersNo}}</view>
+      </view>
+    </view>
+    <view class="bottom">
+      <view class="comment" wx:if="{{item.status=='1001'}}" catchtap="transComp" data-id="{{item.id}}" data-goodsid="{{item.goodsId}}" data-flag="transComp">
+        <text>交易成功</text>
+        <view class="cancelTrans" catchtap="transComp" data-id="{{item.id}}" data-goodsid="{{item.goodsId}}" data-flag="transCancel">
+          <text>取消交易</text>
+        </view>
+      </view>
+      <view class="comment" wx:elif="{{item.status=='1003'}}" catchtap="selectComment" data-id="{{item.id}}">
+        <text>查看评价</text>
+      </view>
+      <view wx:else>
+      </view>
+      <view class="productCount">
+        <view>金额：￥
+          <text>{{item.goodsPrice}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!--没有数据-->
+<view class="nodata" wx:if="{{ordersList.length==0}}">
+  <image src="../../images/nodata.png" />
+  <text>暂时没有相关数据</text>
+</view>

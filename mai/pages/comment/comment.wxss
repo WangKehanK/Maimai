@@ -1,0 +1,51 @@
+/* pages/report/report.wxss */
+page{
+    background: #f0f0f0;
+}
+.report{
+    display: flex;
+    flex-direction: column;
+}
+.reportBox{
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 10rpx;
+    background: #fff;
+    padding: 30rpx;
+}
+.reportBox>textarea{
+    font-size: 30rpx;
+    color: #262626;
+}
+.report_btn{
+    margin-top: 30rpx;
+    width: 95%;
+    height: 100rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    background: #F56250;
+    border-radius: 50rpx;
+    font-size: 38rpx;
+}
+.star-title{
+  color:gray;
+  font-size: 34rpx;
+  margin: 20rpx 30rpx;
+}
+.star-pos {
+  margin: 10rpx;
+  display: flex;
+  flex-direction: row;
+}
+.stars{
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 30rpx;
+}
+.star-desc{
+  margin-left: 30rpx;
+  color:gray;
+  font-size: 32rpx;
+}

@@ -1,0 +1,36 @@
+<!--pages/me/me.wxml-->
+<view class='me'>
+  <view class='meTop'>
+    <view class="meTopBg">
+      <image src='../../images/mycen_topbg.png'/>
+    </view>
+    <view class="meTopuserInfo">
+      <view class='meTopuserIcon'>
+        <image src="{{userCover}}"/>
+      </view>
+      <view class='meTopuserName'>
+        <text>{{userName}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="meBottom">
+    <view class="goodCon" wx:if="{{goodList.length>0}}">
+        <view class="goodItem" wx:for="{{goodList}}" wx:key="item.id" bindtap="goGoodCon" data-id="{{item.id}}" data-mid="{{item.mid}}">
+          <view class="goodItem_box">
+            <view class="imgBox">
+              <image src="{{imgHost+item.goodsImgs[0]}}" mode="aspectFill"/>
+            </view>
+            <view class="infoBox">
+              <text class="title">{{item.goodsTitle}}</text>
+              <view class="price"><text class="small">￥</text>{{item.goodsPrice}}</view>
+            </view>
+          </view>
+        </view>
+    </view>
+  </view>
+  <!--没有数据-->
+  <view class="nodata" wx:if="{{goodList.length==0}}">
+    <image src="../../images/nodata.png"/>
+    <text>暂时没有相关数据</text>
+  </view>
+</view>

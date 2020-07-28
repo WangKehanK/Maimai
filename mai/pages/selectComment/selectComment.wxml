@@ -1,0 +1,41 @@
+<view bindtap="toOrderDetail" class="orderDetails">
+    <view class="orderListTitle">
+      <view class="userImg">
+      <image src="{{commentInfo.headimg}}"></image>
+      </view>
+      <text class="userName">{{commentInfo.nickName}}</text>
+    </view>
+    <view class="orderListDetails">
+      <view class="productImg">
+        <image src="{{imgHost+commentInfo.goodsImgs[0]}}"></image>
+      </view>
+      <view class="productInfo">
+        <view class="productTitle">{{commentInfo.goodsTitle}}</view>
+        <text class="productTime">{{commentInfo.createTime}}</text>
+        <view class="productNo">订单编号：{{commentInfo.ordersNo}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="commentInfo">
+    <view class='text'>
+      评价内容
+    </view>
+    <view class='myImg'>
+      <image src="{{commentInfo.commentHeadimg}}"></image>
+      <view class="userName">{{commentInfo.commentUserName}}</view>
+    </view>
+    <view class='myComment'>
+      {{commentInfo.commentContent}}
+    </view>
+    <view class='commentTime'>
+      {{commentInfo.commentTime}}
+    </view>
+    <view class='star'>
+      <block wx:for="{{one_1}}" wx:key="1">
+        <image class='img' src="../../images/star1.png"></image>
+      </block>
+       <block wx:for="{{two_1}}">
+        <image class='img' src="../../images/star0.png"></image>
+      </block>
+    </view>
+  </view>
