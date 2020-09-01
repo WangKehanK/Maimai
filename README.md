@@ -1,4 +1,5 @@
 # Maimai
+Aiming to solve the real-world problem that international students has no place to sell their second-hand products, especially furniture.
 ## Front end
 Wechat Build-in
 
