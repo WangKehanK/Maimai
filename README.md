@@ -1,11 +1,11 @@
 # Maimai
-##Front end
+## Front end
 Wechat Build-in
 
-##Server
+## Server
 
--eclipse
--jdk8
--tomcat8.5
--mysql5.7
--Maven
+- eclipse
+- jdk8
+- tomcat8.5
+- mysql5.7
+- Maven
