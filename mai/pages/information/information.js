@@ -73,7 +73,7 @@ Page({
   formSubmit: function (e) {
     var that=this;
     let { email, qq, phone, addr,remark} = e.detail.value;
-    if (!email || !qq || !phone || !addr) {
+    if (!phone | !addr) {
       wx.showToast({
         title: '必填项不得为空',
         icon: 'none',

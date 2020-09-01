@@ -13,7 +13,7 @@
               </view>
               <view class="infoBox">
                 <text class="title">{{item.goodsTitle}}</text>
-                <view class="price"><text class="small">￥</text>{{item.goodsPrice}}</view>
+                <view class="price"><text class="small">$</text>{{item.goodsPrice}}</view>
               </view>
               <view class="user" catchtap="goUserGoods" data-userId="{{item.userId}}" data-username="{{item.nickName}}" data-usercover="{{item.headimg}}">
                 <image src="{{item.headimg}}" />     

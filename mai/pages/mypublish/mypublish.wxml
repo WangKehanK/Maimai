@@ -17,7 +17,7 @@
             </view>
             <view class="infoBox">
               <text class="title">{{item.goodsTitle}}</text>
-              <view class="price"><text class="small">￥</text>{{item.goodsPrice}}</view>
+              <view class="price"><text class="small">$</text>{{item.goodsPrice}}</view>
               <text class="cate">{{item.goodsTypeName}}</text>
             </view>
           </view>
@@ -60,7 +60,7 @@
           <view class="goodItem_box">
            <view class="infoBox">
               <text class="title">{{item.goodsTitle}}</text>
-              <view class="price"><text class="small">￥</text>{{item.goodsMinPrice}}~<text class="small">￥</text>{{item.goodsMaxPrice}}</view>
+              <view class="price"><text class="small">$</text>{{item.goodsMinPrice}}~<text class="small">$</text>{{item.goodsMaxPrice}}</view>
               <text class="cate">{{item.goodsTypeName}}</text>
             </view>
           </view>

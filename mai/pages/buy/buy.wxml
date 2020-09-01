@@ -30,7 +30,7 @@
       <view wx:else>
       </view>
       <view class="productCount">
-        <view>金额：￥<text>{{item.goodsPrice}}</text></view>
+        <view>金额：$<text>{{item.goodsPrice}}</text></view>
       </view>
     </view>
   </view>

@@ -9,7 +9,7 @@
             </view>
         </view>
         <view class="priceCon">
-            <text>￥{{wantDetail.goodsMinPrice}}~￥{{wantDetail.goodsMaxPrice}}</text>
+            <text>${{wantDetail.goodsMinPrice}}~${{wantDetail.goodsMaxPrice}}</text>
         </view>
     </view>
     <view class="detailCon">
@@ -38,7 +38,7 @@
       联系电话：{{wantDetail.phone}}
     </view>
     <view class='userContactAddr'>
-      详细地址：{{wantDetail.addr}}
+      区域：{{wantDetail.addr}}
     </view>
 </view>
 <view class="white-bg">

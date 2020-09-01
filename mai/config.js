@@ -2,8 +2,8 @@
 
 // var api = "http://localhost:8080/seller";
 // var imgHost = "http://localhost:8080/seller";
-var api = "http://ec2-3-20-205-204.us-east-2.compute.amazonaws.com:8080/second/";
-var imgHost = "http://ec2-3-20-205-204.us-east-2.compute.amazonaws.com:8080/second/";
+var api = "http://ec2-3-20-205-204.us-east-2.compute.amazonaws.com";
+var imgHost = "http://ec2-3-20-205-204.us-east-2.compute.amazonaws.com";
 var config = {
   imgHost,
   loginUrl: `${api}/wx/User/getOpenid.action`,  //登录接口

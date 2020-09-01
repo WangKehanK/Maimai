@@ -42,7 +42,7 @@ page{
   flex-direction: column;
 }
 .goodHead{
-  border-left: 6rpx solid #F56250;
+  /* border-left: 6rpx solid #F56250; */
   padding: 16rpx;
   display: flex;
   align-items: center;

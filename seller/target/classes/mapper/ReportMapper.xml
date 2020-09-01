@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.chich.seller.dao.ReportDao" >
+<resultMap id="reportResultMap" type="cn.chich.seller.bean.Report" >
+    <id column="id" property="id" jdbcType="INTEGER"/>
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER"/>
+    <result column="goods_no" property="goodsNo" jdbcType="VARCHAR"/>
+    <result column="report_id" property="reportId" jdbcType="INTEGER"/>
+    <result column="report_name" property="reportName" jdbcType="VARCHAR"/>
+    <result column="violator_id" property="violatorId" jdbcType="INTEGER"/>
+    <result column="violator_name" property="violatorName" jdbcType="VARCHAR"/>
+    <result column="report_content" property="reportContent" jdbcType="VARCHAR"/>
+    <result column="status" property="status" jdbcType="INTEGER"/>
+    <result column="status_name" property="statusName" jdbcType="VARCHAR"/>
+    <result column="report_num" property="reportNum" jdbcType="VARCHAR"/>
+    <result column="create_time" property="createTime" jdbcType="VARCHAR"/>
+  </resultMap>
+	
+   <select id="reportList" resultMap="reportResultMap">
+		select r.id,r.goods_id,g.goods_no,r.report_id,u1.nick_name report_name,
+		r.violator_id,u2.nick_name violator_name,r.report_content,r.status,
+		b.code_name status_name,r.create_time,ifnull(u2.report_num,0) report_num
+		from report r
+		left join goods g on g.id = r.goods_id
+		left join user u1 on u1.id = r.report_id		
+		left join user u2 on u2.id = r.violator_id	
+		left join base_code b on r.status=b.code_id	
+		order by create_time desc
+  </select>
+   <select id="selectReports" parameterType="java.lang.String" resultMap="reportResultMap">
+		select r.id,r.goods_id,g.goods_no,r.report_id,u1.nick_name report_name,
+		r.violator_id,u2.nick_name violator_name,r.report_content,r.status,
+		b.code_name status_name,r.create_time,ifnull(u2.report_num,0) report_num
+		from report r
+		left join goods g on g.id = r.goods_id
+		left join user u1 on u1.id = r.report_id		
+		left join user u2 on u2.id = r.violator_id	
+		left join base_code b on r.status=b.code_id	
+		where g.goods_no like "%"#{arg0}"%" order by create_time desc
+  </select>
+  <update id="handleReports" parameterType="java.lang.Integer">
+  	update report set status=#{arg1} where id=#{arg0}
+  </update>
+  <insert id="addReport" useGeneratedKeys="true" keyProperty="id" parameterType="cn.chich.seller.bean.Report">  
+	  insert into `report` (goods_id,report_id,violator_id,report_content,create_time,status)
+	  values(#{goodsId},#{reportId},#{violatorId},#{reportContent},now(),1040)
+  </insert>
+</mapper>

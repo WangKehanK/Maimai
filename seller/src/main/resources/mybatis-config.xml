@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+		<!-- 自动驼峰命名转换（数据表和bean类属性对应） -->
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true" />
+    </settings>
+    	<!-- 给 cn.chich.seller.bean包下的类批量起别名 -->
+    <typeAliases>
+        <package name="cn.chich.seller.bean" />
+    </typeAliases>
+</configuration>

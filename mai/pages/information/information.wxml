@@ -20,21 +20,22 @@
           <input name="qq" placeholder="请输入QQ" value="{{userInfo.qq}}" />
   </view>
   <view class="weui-cell">
-          <text class="weui-cell__bd">手机号：</text>  
+          <text class="weui-cell__bd">手机号*：</text>  
           <input name="phone" placeholder="请输入手机号"  value="{{userInfo.phone}}" />  
   </view>
   
   <view class="weui-cell">
-          <text class="weui-cell__bd">详细地址：</text> 
-          <input name="addr" placeholder="如：24#419"  value="{{userInfo.addr}}" />   
+          <text class="weui-cell__bd">区域*：</text> 
+          <input name="addr" placeholder="如：Allston"  value="{{userInfo.addr}}" />   
   </view>
   <view class="weui-cell">
           <text class="weui-cell__bd person-desc">个人描述：</text> 
           <textarea name="remark" class="weui-textarea" placeholder="请输入个人描述" style="height: 3.3em" value="{{userInfo.remark}}"/>
   </view>
   <view class="btn-area">
+    <text style="font-size: 20rpx">(*为必填项)</text>
     <button class="tj" formType="submit">提交</button>
-    <button formType="reset">重置</button>
+    <button class="tj" formType="reset">重置</button>
   </view>
 </form>
 </view>

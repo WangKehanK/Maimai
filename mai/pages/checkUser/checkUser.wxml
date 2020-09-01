@@ -1,45 +1,47 @@
-<view wx:if="{{userInfo.status=='1013'}}" class="shenhe">您提交的认证信息正在审核中</view>
-<view wx:if="{{userInfo.status=='1012'}}" class="shenhe">您的账户已被冻结，请联系管理员</view>
-<view wx:if="{{userInfo.status=='1011'}}" class="shenhe">您的信息已认证通过</view>
-<view wx:if="{{userInfo.status=='1014'}}" class="shenhe">您的信息认证未通过</view>
-<view wx:if="{{userInfo.status=='1011'||userInfo.status=='1010'||userInfo.status=='1014'}}">
-  <form bindsubmit="formSubmit" bindreset="formReset">
+   <view wx:if="{{userInfo.status=='1013'}}" class="shenhe">您提交的认证信息正在审核中</view>
+   <view wx:if="{{userInfo.status=='1012'}}" class="shenhe">您的账户已被冻结，请联系管理员</view>
+   <view wx:if="{{userInfo.status=='1011'}}" class="shenhe">您的信息已认证通过</view>
+  <view wx:if="{{userInfo.status=='1014'}}" class="shenhe">您的信息认证未通过</view>
+   <view wx:if="{{userInfo.status=='1011'||userInfo.status=='1010'||userInfo.status=='1014'}}">
+   <form bindsubmit="formSubmit" bindreset="formReset">
     <view class='upload'>
-      <view class='upload_title'>
-        <text>请上传学生证(或一卡通)正反面照片</text>
-        <text class='num'>{{photos.length}}/2</text>
-      </view>
-      <view class='photoImgs'>
-        <view class='img' wx:for="{{photos}}" wx:key="{{index}}" >
-          <image src='../../images/close.png' style="{{closeStyle}}" class="close" data-index="{{index}}" bindtap='delImg'></image>
-          <image src='{{imgHost}}{{item}}' data-url="{{imgHost}}{{item}}" mode="aspectFill"></image>
+        <view class='upload_title'>
+            <text>请上传学生证正反面照片</text>
+            <text class='num'>{{photos.length}}/2</text>
         </view>
-        <view class='img' wx:if="{{photos.length<2}}">
-          <image src='../../images/add-photo.png' bindtap='chooseImage'></image>
+        <view class='photoImgs'>
+            <view class='img' wx:for="{{photos}}" wx:key="{{index}}">
+                <image src='../../images/close.png' style="{{closeStyle}}" class="close" data-index="{{index}}" bindtap='delImg'></image>
+                <image src='{{imgHost}}{{item}}' data-url="{{imgHost}}{{item}}" mode="aspectFill"></image>
+            </view>
+            <view class='img' wx:if="{{photos.length<2}}">
+                <image src='../../images/add-photo.png' bindtap='chooseImage'></image>
+            </view>
         </view>
-      </view>
     </view>
-    <view class="weui-cell user-info">
-      <text class="weui-cell__bd text">姓名：</text>
-      <input class="text" name="userName" placeholder="请输入姓名" value="{{userInfo.userName}}" />
+    <view  class="weui-cell user-info">
+          <text class="weui-cell__bd text">姓名：</text>
+          <input class="text" name="userName" placeholder="请输入姓名"  value="{{userInfo.userName}}" />
     </view>
-    <view class="weui-cell">
-      <text class="weui-cell__bd text">证件号码：</text>
-      <input class="text" name="idNum" placeholder="请输入证件号码" value="{{userInfo.idNum}}" />
+    <view  class="weui-cell">
+      <text class="weui-cell__bd text">证件号码：U</text>
+      <input  class="text" name="idNum" placeholder="请输入证件号码"  value="{{userInfo.idNum==0?'':userInfo.idNum}}" />
     </view>
-    <view class="weui-cell">
-      <text class="weui-cell__bd zhuanye text">专业：</text>
-      <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{majorIndex}}" range="{{majorArray}}" range-key="name">
-        <text wx:if="{{sName!=''}}" class="text zhuanye-text">{{sName}},{{dName}},{{mName}}</text>
-        <text wx:else class="text zhuanye-text">{{majorArray[0][majorIndex[0]].name}},{{majorArray[1][majorIndex[1]].name}},{{majorArray[2][majorIndex[2]].name}}</text>
-      </picker>
-
-    </view>
-    <view wx:if="{{userInfo.status=='1010'||userInfo.status=='1014'}}">
-      <view class="btn-area">
-        <button class="tj" formType="submit">提交</button>
-        <button formType="reset">重置</button>
-      </view>
-    </view>
-  </form>
+    <view  class="weui-cell">
+          <text class="weui-cell__bd zhuanye text">专业：</text>
+          <picker  mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{majorIndex}}" range="{{majorArray}}" range-key="name">
+            <text wx:if="{{sName!=''}}" class="text zhuanye-text">{{sName}},{{dName}},{{mName}}</text>
+            <text wx:else class="text zhuanye-text">{{majorArray[0][majorIndex[0]].name}},{{majorArray[1][majorIndex[1]].name}},{{majorArray[2][majorIndex[2]].name}}</text>
+          </picker>
+          
+  </view>
+ <view wx:if="{{userInfo.status=='1010'||userInfo.status=='1014'}}">
+  <view class="btn-area">
+    <button class="tj" formType="submit">提交</button>
+    <button formType="reset">重置</button>
+  </view>
+  </view>
+</form>
 </view>
+    
+    

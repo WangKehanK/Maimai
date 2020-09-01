@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.chich.seller.dao.CollectDao" >
+<resultMap id="getResultMap" type="cn.chich.seller.bean.Collect" >
+    <id column="id" property="id" jdbcType="INTEGER"/>
+    <result column="invitation_id" property="invitationId" jdbcType="INTEGER"/>
+    <result column="collect_time" property="collectTime" jdbcType="VARCHAR"/>
+    <result column="goods_title" property="goodsTitle" jdbcType="VARCHAR"/>
+    <result column="goods_imgs" property="goodsImgs" jdbcType="VARCHAR"/>
+    <result column="goods_no" property="goodsNo" jdbcType="VARCHAR"/>
+    <result column="goods_price" property="goodsPrice" jdbcType="DOUBLE"/>
+    <result column="goods_min_price" property="goodsMinPrice" jdbcType="DOUBLE"/>
+    <result column="goods_max_price" property="goodsMaxPrice" jdbcType="DOUBLE"/>
+    <result column="goods_type" property="goodsType" jdbcType="INTEGER"/>
+    <result column="goods_type_name" property="goodsTypeName" jdbcType="VARCHAR"/>
+    <result column="goods_desc" property="goodsDesc" jdbcType="VARCHAR"/>
+    <result column="status" property="status" jdbcType="INTEGER"/>
+    <result column="status_name" property="statusName" jdbcType="VARCHAR"/>
+</resultMap>
+  <select id="getCollectList" parameterType="java.lang.Integer" resultMap="getResultMap">
+    SELECT c.id,g.user_id,invitation_id,collect_time,g.goods_title,g.goods_imgs,g.goods_no,g.goods_price,g.goods_desc,
+    g.goods_type,t.type_name goods_type_name,g.status,b.code_name as status_name
+	FROM collect c
+	left join goods g on g.id=c.invitation_id
+	left join goods_type t on g.goods_type=t.id
+	left join base_code b on g.`status`=b.code_id
+	WHERE
+	c.user_id = #{arg0} and invitation_type='goods' order by collect_time desc
+  </select>
+  <select id="getCollectWantList" parameterType="java.lang.Integer" resultMap="getResultMap">
+    SELECT c.id,invitation_id,collect_time,w.goods_no,w.goods_min_price,w.goods_max_price,w.goods_title,w.goods_desc,
+    w.goods_type,t.type_name goods_type_name,w.status,b.code_name as status_name
+	FROM collect c
+	left join want w on w.id=c.invitation_id
+	left join goods_type t on w.goods_type=t.id
+	left join base_code b on w.`status`=b.code_id
+	WHERE
+	c.user_id = #{arg0} and invitation_type='want' order by collect_time desc
+  </select>
+  <select id="isCollect" parameterType="java.util.Map" resultMap="getResultMap">
+    select * from collect 
+    where invitation_id=#{arg0} and user_id=#{arg1} and invitation_type=#{arg2}
+  </select>
+  
+  <!-- 插入用户收藏信息 -->  
+  <insert id="addUserCollect" useGeneratedKeys="true" keyProperty="id" parameterType="cn.chich.seller.bean.Collect">  
+	  insert into collect (user_id,invitation_id,invitation_type,collect_time)  
+	       values(#{userId},#{invitationId},#{invitationType},now())  
+  </insert>
+  
+    <!-- 删除用户收藏信息 -->  
+  <delete id="deleteUserCollect" parameterType="java.lang.Integer" > 
+	  delete from  collect where id=#{arg0}
+  </delete>
+  
+</mapper>

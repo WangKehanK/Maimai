@@ -3,6 +3,7 @@ var util = require('../../util.js');
 const app = getApp()
 Page({
   data: {
+    scrollLock: false,
     postCateBook:[],
     postCateEle:[],
     postCateLife:[],
@@ -40,6 +41,11 @@ Page({
   goClass: function(e){
     wx.navigateTo({
       url: '../classify/classify'
+    })
+  },
+  goInfo: function (e) {
+    wx.navigateTo({
+      url: '../information/information'
     })
   },
   goTob(){
@@ -472,7 +478,23 @@ Page({
       })
     }
   },
-
+  //计算swiper item到顶部的距离
+  onPageScroll(e) {
+    const that = this;
+    let scrollLock;
+    e.scrollTop >=200 ? scrollLock = true : scrollLock = false;
+    console.log(e.scrollTop);
+    that.setData({
+      scrollLock
+    });
+    if (scrollLock==true){
+      //fake loading
+      wx.showLoading({
+        title: '加载中...',
+        duration: 100
+      })
+    }
+  },
   onShow: function() {
     if (app.globalData.isIndexRefresh) {
       var that = this;

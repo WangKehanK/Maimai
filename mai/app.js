@@ -4,32 +4,32 @@ App({
   onLaunch: function () {
   },
   //验证登录
-  // checkLogin:function(){
-  //   let token = wx.getStorageSync('token');
-  //   if (token) {
-  //     //检查session_key是否过期
-  //     wx.checkSession({
-  //       //session_key 未过期
-  //       success: function () {
-  //         console.log('未过期');
+  checkLogin:function(){
+    let token = wx.getStorageSync('token');
+    if (token) {
+      //检查session_key是否过期
+      wx.checkSession({
+        //session_key 未过期
+        success: function () {
+          console.log('未过期');
 
-  //       },
-  //       //session_key 已过期
-  //       fail: function () {
-  //         // console.log('已过期');
-  //         wx.reLaunch({
-  //           url: "/pages/login/login"
-  //         })
-  //       }
-  //     });
-  //   } else {
-  //     //无skey,作为首次登录
-  //     console.log("首次登录");
-  //     wx.reLaunch({
-  //       url: "/pages/login/login"
-  //     })
-  //   }
-  // }, 
+        },
+        //session_key 已过期
+        fail: function () {
+          // console.log('已过期');
+          wx.reLaunch({
+            url: "/pages/login/login"
+          })
+        }
+      });
+    } else {
+      //无skey,作为首次登录
+      console.log("首次登录");
+      wx.reLaunch({
+        url: "/pages/login/login"
+      })
+    }
+  }, 
   //多张图片上传
   uploadimg: function (data) {
     var that = this;

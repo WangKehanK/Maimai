@@ -9,7 +9,7 @@
             </view>
         </view>
         <view class="priceCon">
-            <text>￥{{goodDetail.goodsPrice}}</text>
+            <text>${{goodDetail.goodsPrice}}</text>
         </view>
     </view>
     <view class="detailCon">
@@ -36,14 +36,14 @@
        <image src="{{goodDetail.headimg}}" />
         <view class="aboutUserName">
           <text>{{goodDetail.nickName}}</text>
-          <text>{{goodDetail.schoolName}},{{goodDetail.deptName}},{{goodDetail.majorName}}</text>
+          <text>{{goodDetail.schoolName}}-{{goodDetail.deptName}}</text>
         </view>
     </view>
     <view class='userContactPhone'>
       联系电话：{{goodDetail.phone}}
     </view>
     <view class='userContactAddr'>
-     详细地址：{{goodDetail.addr}}
+     区域：{{goodDetail.addr}}
     </view>
 </view>
 <view class="white-bg">
@@ -56,9 +56,12 @@
     <text>收藏</text>
   </view>
 </view>
-<view class="confirmOrder" wx:if="{{goodDetail.status==1020}}" bindtap="confirmOrder" data-id="{{goodDetail.id}}"  hidden="{{isMine}}">
+<view class="confirmOrder" bindtap="callPhone" data-phone="{{goodDetail.phone}}" hidden="{{isMine}}">
+        <text>立即咨询</text>
+    </view>
+<!-- <view class="confirmOrder" wx:if="{{goodDetail.status==1020}}" bindtap="confirmOrder" data-id="{{goodDetail.id}}"  hidden="{{isMine}}">
   <text>立即咨询</text>
-</view>
+</view> -->
 <view class="manageGood" wx:if="{{goodDetail.status==1020}}" bindtap="manageGood" data-id="{{goodDetail.id}}"  hidden="{{!isMine}}">
   <text>管理我的商品</text>
 </view>
@@ -79,7 +82,7 @@
     <view class="reportBtn" bindtap="goReport" data-id="{{goodDetail.id}}" data-violatorid="{{goodDetail.userId}}" hidden="{{isMine}}">
             <text>投诉</text>
     </view>
-    <view class="reportBtn concatMe"bindtap="callPhone" data-phone="{{goodDetail.phone}}" hidden="{{isMine}}">
+    <!-- <view class="reportBtn concatMe"bindtap="callPhone" data-phone="{{goodDetail.phone}}" hidden="{{isMine}}">
         <text>联系</text>
-    </view>
+    </view> -->
 </view>

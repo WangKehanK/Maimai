@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.chich.seller.dao.MajorDao" >
+<resultMap id="majorResultMap" type="cn.chich.seller.bean.Major" >
+    <id column="id" property="id" jdbcType="INTEGER"/>
+    <result column="name" property="name" jdbcType="VARCHAR"/>
+    <result column="dept_id" property="deptId" jdbcType="INTEGER"/>
+    <result column="is_use" property="isUse" jdbcType="INTEGER"/>
+</resultMap>
+
+  <select id="getMajorOpt" parameterType="java.lang.Integer" resultMap="majorResultMap">
+    select id,name,is_use from major where is_use = 1 and dept_id=#{arg0}
+  </select>
+  <select id="getAllMajor" resultMap="majorResultMap">
+    select id,name,dept_id,is_use from major where is_use = 1
+  </select>
+</mapper>

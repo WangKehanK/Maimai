@@ -8,11 +8,11 @@
         <view class='meTopuserName'>
           <text>{{userInfo.nickName}}</text>
         </view>
-        <view class='xinyu'>
+        <!-- <view class='xinyu'>
           <text>信誉积分：</text>
           <image class='xinyu-img' src='../../images/xinyu.png'></image>
           <text>{{userInfo.creditVal}}</text>
-        </view>
+        </view> -->
         <view wx:if="{{userInfo.status=='1010'}}" class='meTopStatus'>
           未认证
         </view>

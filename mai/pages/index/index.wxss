@@ -16,7 +16,6 @@ page{
 /* 最新发布 */
 .goodMain{
   background: #fff;
-
 }
 .swiper-tab {
   position: relative;
@@ -40,6 +39,12 @@ page{
 	justify-content: space-around;
 	align-items: center;
 	padding: 16rpx;
+  border-radius: 15rpx;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  color: inherit;
+  transition: border 0.2s;
 }
 .desc{
   font-size: 30rpx;
@@ -49,8 +54,9 @@ page{
   font-size: 30rpx;
 }
 .on {
-  color:#FFC700;
-  border-bottom: 5rpx solid #FFC700;
+  /* color:#FFC700;
+  border-bottom: 5rpx solid #FFC700; */
+  box-shadow: 0 0 30rpx wheat;
 }
 .goodCon{
   width: 100%;
@@ -210,8 +216,8 @@ page{
   width: 100rpx;
   height: 100rpx;
   border-radius: 50%;
- background: -webkit-linear-gradient(left,lightblue,skyblue);
-  box-shadow:0rpx 0rpx 30rpx rgba(7, 205, 219, 0.705);
+ background: #fbbd08;
+  box-shadow:0rpx 0rpx 30rpx rgba(199, 50, 134, 0.2);
   position: fixed;
   right: 10rpx;
   bottom: 200rpx;
@@ -233,8 +239,8 @@ page{
   width: 100rpx;
   height: 100rpx;
   border-radius: 50%;
-     background: -webkit-linear-gradient(left,lightblue,skyblue);
-  box-shadow:0rpx 0rpx 30rpx rgba(7, 205, 219, 0.705);
+     background: #fbbd08;
+  box-shadow:0rpx 0rpx 30rpx rgba(199, 50, 134, 0.2);
   position: fixed;
   right: 10rpx;
   bottom: 50rpx;
@@ -248,6 +254,7 @@ page{
   font-size: 30rpx;
   color: #fff;
 }
+
 
 .maidiaole{
   position: absolute;
@@ -295,7 +302,7 @@ page{
   line-height: 60rpx;
   font-size: 30rpx;
   font-weight: 800;
-  color: rgb(255, 187, 0);
+  color: #fbbd08;
   padding: 10rpx;
 }
 
@@ -317,5 +324,10 @@ page{
 .swiper_notice swiper-item text {
   font: bold;
   font-size: 30rpx;
-  color: #FFC700;
+  color: #f37b1d;
+  font-weight: 750;
+}
+
+.more-image{
+  display: inline;
 }

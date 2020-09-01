@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.chich.seller.dao.UserDao" >
+<resultMap id="userResultMap" type="cn.chich.seller.bean.User" >
+    <id column="id" property="id" jdbcType="INTEGER"/>
+    <result column="open_id" property="openId" jdbcType="VARCHAR"/>
+    <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR"/>
+    <result column="phone" property="phone" jdbcType="VARCHAR"/>
+    <result column="addr" property="addr" jdbcType="VARCHAR"/>
+    <result column="school_id" property="schoolId" jdbcType="INTEGER"/>
+    <result column="school_name" property="schoolName" jdbcType="VARCHAR"/>
+    <result column="dept_id" property="deptId" jdbcType="INTEGER"/>
+    <result column="dept_name" property="deptName" jdbcType="VARCHAR"/>
+    <result column="major_id" property="majorId" jdbcType="INTEGER"/>
+    <result column="major_name" property="majorName" jdbcType="VARCHAR"/>
+    <result column="qq" property="qq" jdbcType="VARCHAR"/>
+    <result column="email" property="email" jdbcType="VARCHAR"/>
+    <result column="gender" property="gender" jdbcType="INTEGER"/>
+    <result column="gender_name" property="genderName" jdbcType="VARCHAR"/>
+    <result column="headimg" property="headimg" jdbcType="VARCHAR"/>
+    <result column="id_card_img" property="idCardImg" jdbcType="VARCHAR"/>
+    <result column="create_time" property="createTime" jdbcType="VARCHAR"/>
+    <result column="fro_time" property="froTime" jdbcType="VARCHAR"/>
+    <result column="last_login_time" property="lastLoginTime" jdbcType="VARCHAR"/>
+    <result column="status" property="status" jdbcType="INTEGER"/>
+    <result column="is_show" property="isShow" jdbcType="VARCHAR"/>
+    <result column="report_num" property="reportNum" jdbcType="INTEGER"/>
+    <result column="id_num" property="idNum" jdbcType="VARCHAR"/>
+    <result column="credit_val" property="creditVal" jdbcType="INTEGER"/>
+    <result column="remark" property="remark" jdbcType="VARCHAR"/>
+  </resultMap>
+	
+   <select id="getAllUser" resultMap="userResultMap">
+		select u.id,u.open_id,ifnull(u.user_name,'') user_name,u.nick_name,ifnull(u.phone,'') phone,ifnull(u.addr,'') addr,u.school_id,ifnull(s.name,'') school_name,
+		u.dept_id,ifnull(d.name,'') dept_name,major_id,ifnull(m.name,'') major_name,ifnull(qq,'') qq,ifnull(email,'') email,u.gender, id_num,ifnull(u.id_card_img,'') id_card_img,
+		case gender when 1 then '男' else '女' end as gender_name,headimg,
+		u.create_time,u.fro_time,u.fro_end_time,last_login_time,u.status,
+		ifnull(b.code_name,'') status_name,credit_val,
+		case u.status when 1012 then 'checked' else '' end as is_show,
+		u.report_num,u.remark
+	   	from user u
+	    left join school s on u.school_id=s.id
+	    left join dept d on u.dept_id=d.id 
+	    left join major m on u.major_id=m.id
+	    left join base_code b on u.status=b.code_id
+	    where role=1 and u.id_num!=''and u.status!=1014 order by u.create_time desc
+  </select>
+  <insert id="addUserInfo" parameterType="cn.chich.seller.bean.User" >
+   insert into user values (#{userName}, #{phone})
+  </insert>
+  <select id="getUserByIdReturnList"  parameterType="java.lang.Integer" resultMap="userResultMap">
+    select id,user_name,phone from user where id = #{id}
+  </select>
+  <select id="getReportNum"  parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select IFNULL(report_num,0) from user where id = #{id}
+  </select>
+  <select id="getUserById"  parameterType="java.lang.Integer" resultMap="userResultMap">
+    select u.id,u.open_id,ifnull(u.user_name,'') user_name,u.nick_name,ifnull(u.phone,'') phone,ifnull(u.addr,'') addr,u.school_id,ifnull(s.name,'') school_name,
+		u.dept_id,ifnull(d.name,'') dept_name,major_id,ifnull(m.name,'') major_name,ifnull(qq,'') qq,ifnull(email,'') email,u.gender,ifnull(u.id_num,'') id_num,ifnull(u.id_card_img,'') id_card_img,
+		case gender when 1 then '男' else '女' end as gender_name,headimg,
+		u.create_time,fro_time,fro_end_time,last_login_time,u.status,
+		ifnull(b.code_name,'') status_name,credit_val,
+		case u.status when 1012 then 'checked' else '' end as is_show,
+		u.report_num,ifnull(u.remark,'') remark
+	   	from user u
+	    left join school s on u.school_id=s.id
+	    left join dept d on u.dept_id=d.id 
+	    left join major m on u.major_id=m.id
+	    left join base_code b on u.status=b.code_id
+	    where role=1 and u.id= #{arg0}
+  </select>
+  <select id="selectVioUserById"  parameterType="java.lang.Integer" resultMap="userResultMap">
+    select u.id,u.open_id,ifnull(u.user_name,'') user_name,u.nick_name,ifnull(u.phone,'') phone,ifnull(u.addr,'') addr,u.school_id,ifnull(s.name,'') school_name,
+		u.dept_id,ifnull(d.name,'') dept_name,major_id,ifnull(m.name,'') major_name,ifnull(qq,'') qq,ifnull(email,'') email,u.gender,ifnull(u.id_num,'') id_num,ifnull(u.id_card_img,'') id_card_img,
+		case gender when 1 then '男' else '女' end as gender_name,headimg,
+		u.create_time,fro_time,fro_end_time,last_login_time,u.status,
+		ifnull(b.code_name,'') status_name,credit_val,
+		case u.status when 1012 then 'checked' else '' end as is_show,
+		u.report_num,ifnull(u.remark,'') remark
+	   	from user u
+	    left join school s on u.school_id=s.id
+	    left join dept d on u.dept_id=d.id 
+	    left join major m on u.major_id=m.id
+	    left join base_code b on u.status=b.code_id
+	    where role=1 and u.id= #{arg0}
+  </select>
+  <select id="selectUser" parameterType="java.lang.String" resultMap="userResultMap">
+    select u.id,u.open_id,ifnull(u.user_name,'') user_name,u.nick_name,ifnull(u.phone,'') phone,ifnull(u.addr,'') addr,u.school_id,ifnull(s.name,'') school_name,
+		u.dept_id,ifnull(d.name,'') dept_name,major_id,ifnull(m.name,'') major_name,ifnull(qq,'') qq,ifnull(email,'') email,u.gender,id_num,ifnull(u.id_card_img,'') id_card_img,
+		case gender when 1 then '男' else '女' end as gender_name,headimg,
+		u.create_time,fro_time,fro_end_time,last_login_time,u.status,
+		ifnull(b.code_name,'') status_name,credit_val,
+		case u.status when 1012 then 'checked' else '' end as is_show,
+		u.report_num,ifnull(u.remark,'') remark
+	   	from user u
+	    left join school s on u.school_id=s.id
+	    left join dept d on u.dept_id=d.id 
+	    left join major m on u.major_id=m.id
+	    left join base_code b on u.status=b.code_id
+	    where role=1 and u.id_num!=''and u.status!=1014 and u.nick_name like "%"#{arg0}"%" order by last_login_time desc
+  </select>
+  <select id="selectUserByOpenId" parameterType="java.lang.String" resultMap="userResultMap">
+    select * from user u where role=1 and u.open_id=#{arg0}
+  </select>
+  <select id="login" parameterType="string" resultMap="userResultMap">
+    select * from user where user_name = #{arg0} and pwd=#{arg1} and role=2
+  </select>
+  <select id="getUser" parameterType="int" resultMap="userResultMap">
+    select * from user where id = #{arg0}
+  </select>
+  <select id="initChart1" resultType="map"><!-- xml 语句中不能存在<等字符 用转义字符表示 -->
+    select
+	date_format(a.create_time, '%m-%d') days1,
+	count(*) count1
+	from
+	(select create_time from user
+ 	where date_sub(curdate(), interval 7 day ) &lt;= date(create_time)) as a
+	group by days1
+  </select>
+  <select id="initChart2" resultType="map">
+	select 
+	date_format(b.create_time, '%m-%d') days2,
+	count(*) count2
+	from
+	(select create_time from goods
+ 	where date_sub(curdate(), interval 7 day ) &lt;= date(create_time)) as b
+	group by days2
+  </select>
+  <select id="initChart3" resultType="map">
+	select 
+	date_format(c.create_time, '%m-%d') days3,
+	count(*) count3 
+	from
+	(select create_time from want
+ 	where date_sub(curdate(), interval 7 day ) &lt;= date(create_time)) as c
+	group by days3
+  </select>
+  <select id="initChart4" resultType="map">
+	select 
+	date_format(d.create_time, '%m-%d') days4,
+	count(*) count4 
+	from
+	(select create_time from orders
+ 	where date_sub(curdate(), interval 7 day ) &lt;= date(create_time)) as d
+	group by days4
+  </select>
+  <select id="initChart5" resultType="map">
+	select b.type_name name,count(*) value 
+	from goods a left join goods_type b on a.goods_type=b.id
+	group by b.type_name
+  </select>
+  <select id="initChart6" resultType="java.util.Map">
+	select b.type_name name,count(*) value 
+	from want a left join goods_type b on a.goods_type=b.id
+	group by b.type_name
+  </select>
+  <update id="editUserInfo" parameterType="cn.chich.seller.bean.User">
+        update user
+        <set>
+            <if test="nickName != null">nick_name=#{nickName},</if>
+            <if test="gender != null">gender=#{gender},</if>
+            <if test="phone != null">phone=#{phone},</if>
+            <if test="email != null">email=#{email},</if>
+            <if test="remark != null">remark=#{remark},</if>
+            <if test="headimg != null">headimg=#{headimg}</if>
+        </set>
+        where user_name=#{userName}
+	</update>
+  <update id="editWXUserInfo" parameterType="cn.chich.seller.bean.User">
+        update user
+        <set>
+            <if test="qq != null">qq=#{qq},</if>
+            <if test="phone != null">phone=#{phone},</if>
+            <if test="email != null">email=#{email},</if>
+            <if test="addr != null">addr=#{addr},</if>
+            <if test="remark != null">remark=#{remark}</if>
+        </set>
+        where id=#{id}
+	</update>
+  <update id="modifyUserInfo" parameterType="cn.chich.seller.bean.User">
+        update user
+        <set>
+            <if test="userName != null">user_name=#{userName},</if>
+            <if test="nickName != null">nick_name=#{nickName},</if>
+            <if test="gender != null">gender=#{gender},</if>
+            <if test="idNum != null">id_num=#{idNum},</if>
+            <if test="addr != null">addr=#{addr},</if>
+            <if test="schoolId != null">school_id=#{schoolId},</if>
+            <if test="deptId != null">dept_id=#{deptId},</if>
+            <if test="majorId != null">major_id=#{majorId},</if>
+            <if test="phone != null">phone=#{phone},</if>
+            <if test="qq != null">qq=#{qq},</if>
+            <if test="email != null">email=#{email},</if>
+            <if test="remark != null">remark=#{remark}</if>
+        </set>
+        where id=#{id}
+	</update>
+	<!-- 根据openId更新微信用户 -->
+  <update id="updateUserInfo" parameterType="cn.chich.seller.bean.User">
+        update user
+        <set>
+            <if test="nickName != null">nick_name=#{nickName},</if>
+            <if test="gender != null">gender=#{gender},</if>
+            <if test="headimg != null">headimg=#{headimg},</if>
+            last_login_time=now()
+        </set>
+        where open_id=#{openId}
+	</update>
+	<!-- 插入微信用户 -->  
+	<insert id="addWXUserInfo" useGeneratedKeys="true" keyProperty="id" parameterType="cn.chich.seller.bean.User">  
+	  insert into user (open_id,nick_name,gender,school_id,dept_id,major_id,headimg,last_login_time,create_time,status)  
+	       values(#{openId},#{nickName},#{gender},1,1,1,#{headimg},now(),now(),1010)  
+	</insert>
+	<!-- 微信用户认证 -->
+	<update id="authCenter" parameterType="cn.chich.seller.bean.User">  
+	   update user
+        <set>
+        	<if test="userName != null">user_name=#{userName},</if>
+            <if test="idNum != null">id_num=#{idNum},</if>
+            <if test="idCardImg != null">id_card_img=#{idCardImg},</if>
+            <if test="schoolId != null">school_id=#{schoolId},</if>
+            <if test="deptId != null">dept_id=#{deptId},</if>
+            <if test="majorId != null">major_id=#{majorId},</if>
+            create_time=now(),
+            status=1013
+        </set>
+        where id=#{id}
+	</update>
+  	<update id="changePwd" parameterType="java.lang.String">
+        update user
+        <set>
+            <if test="#{arg1} != null">pwd=#{arg1}</if>
+        </set>
+        where user_name=#{arg0}
+	</update>
+  	<update id="frozenUserById" parameterType="java.lang.Integer">
+        update user set status=#{arg1} ,fro_time=now(),fro_end_time=DATE_ADD(now(),INTERVAL 1 MONTH) where id=#{arg0}
+	</update>
+  	<update id="unFrozenUserById" parameterType="java.lang.Integer">
+        update user set status=#{arg1} ,fro_time=null,fro_end_time=null,report_num=0 where id=#{arg0}
+	</update>
+  	<update id="updataUserReportNum" parameterType="java.lang.Integer">
+        update user set report_num = ifnull(report_num,0)+1 where id=#{arg0}
+	</update>
+  	<update id="updateUserCreditVal" parameterType="java.lang.Integer">
+        update user set credit_val = ifnull(credit_val,0)+#{arg1} where id=#{arg0}
+	</update>
+</mapper>

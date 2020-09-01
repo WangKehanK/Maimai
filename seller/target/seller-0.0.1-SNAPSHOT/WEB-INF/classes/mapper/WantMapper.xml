@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.chich.seller.dao.WantDao" >
+<resultMap id="wantResultMap" type="cn.chich.seller.bean.Want" >
+    <id column="id" property="id" jdbcType="INTEGER"/>
+    <result column="user_id" property="userId" jdbcType="INTEGER"/>
+    <result column="goods_no" property="goodsNo" jdbcType="VARCHAR"/>
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR"/>
+    <result column="headimg" property="headimg" jdbcType="VARCHAR"/>
+    <result column="goods_type" property="goodsType" jdbcType="INTEGER"/>
+    <result column="goods_type_name" property="goodsTypeName" jdbcType="VARCHAR"/>
+    <result column="goods_title" property="goodsTitle" jdbcType="VARCHAR"/>
+    <result column="goods_desc" property="goodsDesc" jdbcType="VARCHAR"/>
+    <result column="goods_max_price" property="goodsMaxPrice" jdbcType="DOUBLE"/>
+    <result column="goods_min_price" property="goodsMinPrice" jdbcType="DOUBLE"/>
+    <result column="goods_imgs" property="goodsImgs" jdbcType="VARCHAR"/>
+    <result column="is_new_name" property="isNewName" jdbcType="VARCHAR"/>
+    <result column="phone" property="phone" jdbcType="VARCHAR"/>
+    <result column="addr" property="addr" jdbcType="VARCHAR"/>
+    <result column="status" property="status" jdbcType="INTEGER"/>
+    <result column="user_status" property="userStatus" jdbcType="INTEGER"/>
+    <result column="status_name" property="statusName" jdbcType="VARCHAR"/>
+    <result column="school_id" property="schoolId" jdbcType="INTEGER"/>
+    <result column="school_name" property="schoolName" jdbcType="VARCHAR"/>
+    <result column="dept_id" property="deptId" jdbcType="INTEGER"/>
+    <result column="dept_name" property="deptName" jdbcType="VARCHAR"/>
+    <result column="major_id" property="majorId" jdbcType="INTEGER"/>
+    <result column="major_name" property="majorName" jdbcType="VARCHAR"/>
+    <result column="create_time" property="createTime" jdbcType="VARCHAR"/>
+  </resultMap>
+  
+	<!-- wx -->
+  	<select id="getWantSizeByWantTitle" parameterType="java.util.HashMap"  resultType="java.lang.Integer">
+   		select count(1)	from want w
+	  	where w.status!=1032 and w.status!=1030 and and w.goods_title like "%"#{arg0}"%" 
+  	</select>
+  	<!-- wx -->
+  	<select id="selectWantByWantTitle" parameterType="java.util.HashMap" resultMap="wantResultMap">
+   		select w.id,w.user_id,u.nick_name,u.headimg,u.phone,u.addr,u.status user_status,w.goods_no,w.goods_type,t.type_name goods_type_name,w.goods_title,w.goods_desc,w.goods_max_price,w.goods_min_price,
+		w.create_time,w.status,b.code_name status_name
+		from want w
+		left join user u on w.user_id=u.id
+		left join base_code b on w.status=b.code_id
+		left join goods_type t on w.goods_type=t.id
+		where w.status!=1032 and w.status!=1030 and and w.goods_title like "%"#{arg2}"%" order by create_time desc  limit #{arg0},#{arg1}
+  	</select>
+   <select id="getWantSize"  resultType="java.lang.Integer">
+		select count(1)	from want w
+	  	where w.status!=1032 and w.status!=1030
+  </select>
+   <select id="getAllWant" parameterType="java.lang.Integer" resultMap="wantResultMap">
+		select w.id,w.user_id,u.nick_name,u.headimg,u.phone,u.addr,u.status user_status,w.goods_no,w.goods_type,t.type_name goods_type_name,w.goods_title,w.goods_desc,w.goods_max_price,w.goods_min_price,
+		w.create_time,w.status,b.code_name status_name
+		from want w
+		left join user u on w.user_id=u.id
+		left join base_code b on w.status=b.code_id
+		left join goods_type t on w.goods_type=t.id
+		where w.status!=1032 and w.status!=1030 order by create_time desc  limit #{arg0},#{arg1}
+  </select>
+   <select id="getAllWantBySchoolId" parameterType="java.lang.Integer" resultMap="wantResultMap">
+		select w.id,w.user_id,u.nick_name,u.headimg,u.phone,u.addr,u.status user_status,w.goods_no,w.goods_type,t.type_name goods_type_name,w.goods_title,w.goods_desc,w.goods_max_price,w.goods_min_price,
+		w.create_time,w.status,b.code_name status_name
+		from want w
+		left join user u on w.user_id=u.id
+		left join base_code b on w.status=b.code_id
+		left join goods_type t on w.goods_type=t.id
+		where w.status!=1032 and w.status!=1030 and u.school_id=#{arg3} order by create_time desc  limit #{arg0},#{arg1}
+  </select>
+   <select id="wantList" resultMap="wantResultMap">
+		select w.id,w.user_id,u.nick_name,w.goods_no,w.goods_type,t.type_name goods_type_name,w.goods_title,w.goods_desc,w.goods_max_price,w.goods_min_price,
+		w.create_time,w.status,b.code_name status_name
+		from want w
+		left join user u on w.user_id=u.id
+		left join base_code b on w.status=b.code_id
+		left join goods_type t on w.goods_type=t.id 
+		where w.status!=1032 and w.status!=1030 order by create_time desc 
+  </select>
+  <select id="selectWantGoods" parameterType="java.lang.String" resultMap="wantResultMap">
+   		select w.id,w.user_id,u.nick_name,w.goods_no,w.goods_type,t.type_name goods_type_name,w.goods_title,w.goods_desc,w.goods_max_price,w.goods_min_price,
+		w.create_time,w.status,b.code_name status_name
+		from want w
+		left join goods_type t on w.goods_type=t.id
+		left join user u on w.user_id=u.id
+		left join base_code b on w.status=b.code_id
+	  	where w.goods_no like "%"#{arg0}"%" order by create_time desc 
+  </select>
+   <select id="selectWantNumToday" resultType="java.lang.Integer">
+   		select count(1)	from want w
+	  	where w.status!=1032 and w.status!=1030 and DATE_FORMAT(w.create_time,'%Y-%m-%d') = DATE_FORMAT(NOW(),'%Y-%m-%d')
+  </select>
+  <select id="getWantListByUserId" parameterType="java.lang.Integer" resultMap="wantResultMap">
+   		select w.id,w.user_id,u.nick_name,u.headimg,u.phone,u.addr,u.school_id,u.dept_id,u.major_id,s.name school_name,d.name dept_name,m.name major_name,
+   		w.goods_no,w.goods_type,t.type_name goods_type_name,w.goods_title,w.goods_desc,w.goods_max_price,w.goods_min_price,
+		w.create_time,w.status,b.code_name status_name
+		from want w
+		left join goods_type t on w.goods_type=t.id
+		left join user u on w.user_id=u.id
+		left join school s on s.id=u.school_id
+		left join dept d on d.id=u.dept_id
+		left join major m on m.id=u.school_id
+		left join base_code b on w.status=b.code_id
+	  	where w.user_id= #{arg0}  and w.status!=1032 order by create_time desc
+  </select>
+  <select id="getWantGoodById" parameterType="java.lang.Integer" resultMap="wantResultMap">
+   		select w.id,w.user_id,u.nick_name,u.headimg,u.phone,u.addr,u.school_id,u.dept_id,u.major_id,s.name school_name,d.name dept_name,m.name major_name,
+   		w.goods_no,w.goods_type,t.type_name goods_type_name,w.goods_title,w.goods_desc,w.goods_max_price,w.goods_min_price,
+		w.create_time,w.status,b.code_name status_name
+		from want w
+		left join goods_type t on w.goods_type=t.id
+		left join user u on w.user_id=u.id
+		left join school s on s.id=u.school_id
+		left join dept d on d.id=u.dept_id
+		left join major m on m.id=u.school_id
+		left join base_code b on w.status=b.code_id
+	  	where w.id= #{arg0} order by create_time desc
+  </select>
+  <update id="updateWantGoodsStatusById" parameterType="java.lang.Integer">
+        update want set status=#{arg1} where id=#{arg0}
+  </update>
+  <update id="modifyWantGoodsInfo" parameterType="cn.chich.seller.bean.Want">
+        update want
+        <set>
+            <if test="goodsType != null">goods_type=#{goodsType},</if>
+            <if test="goodsTitle != null">goods_title=#{goodsTitle},</if>
+            <if test="goodsDesc != null">goods_desc=#{goodsDesc},</if>
+            <if test="goodsMaxPrice != null">goods_max_price=#{goodsMaxPrice},</if>
+            <if test="goodsMinPrice != null">goods_min_price=#{goodsMinPrice},</if>
+            <if test="status != null">status=#{status}</if>
+        </set>
+        where id=#{id}
+	</update>
+  <update id="editWant" parameterType="cn.chich.seller.bean.Want">
+        update want
+        <set>
+            <if test="goodsType != null">goods_type=#{goodsType},</if>
+            <if test="goodsTitle != null">goods_title=#{goodsTitle},</if>
+            <if test="goodsDesc != null">goods_desc=#{goodsDesc},</if>
+            <if test="goodsMaxPrice != null">goods_max_price=#{goodsMaxPrice},</if>
+            <if test="goodsMinPrice != null">goods_min_price=#{goodsMinPrice}</if>
+        </set>
+        ,create_time=now() where id=#{id}
+	</update>
+	<insert id="addWantUrl" useGeneratedKeys="true" keyProperty="id" parameterType="cn.chich.seller.bean.Want">  
+	  insert into want (user_id,goods_no,goods_type,goods_title,goods_desc,goods_min_price,goods_max_price,create_time,status)  
+	       values(#{userId},#{goodsNo},#{goodsType},#{goodsTitle},#{goodsDesc},#{goodsMinPrice},#{goodsMaxPrice},now(),1031)  
+	</insert>
+</mapper>

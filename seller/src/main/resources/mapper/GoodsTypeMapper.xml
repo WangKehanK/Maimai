@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.chich.seller.dao.GoodsTypeDao" >
+<resultMap id="goodsTypeResultMap" type="cn.chich.seller.bean.GoodsType" >
+    <id column="id" property="id" jdbcType="INTEGER"/>
+    <result column="type_name" property="typeName" jdbcType="VARCHAR"/>
+    <result column="create_time" property="createTime" jdbcType="VARCHAR"/>
+    <result column="is_use" property="isUse" jdbcType="INTEGER"/>
+</resultMap>
+
+  <select id="goodsTypeList" resultMap="goodsTypeResultMap">
+    select t.id,t.type_name,t.is_use,t.create_time
+	from goods_type t
+    where is_use=1 order by create_time desc
+  </select>
+  <update id="delGoodsTypeById" parameterType="java.lang.Integer">
+       update goods_type set is_use=-1 where id=#{arg0}
+  </update>
+  <insert id="addGoodsType" parameterType="cn.chich.seller.bean.GoodsType">
+  	insert into goods_type (type_name,is_use,create_time)
+  	values(#{arg0},1,now())
+  </insert>
+  <select id="selectGoodsType" parameterType="java.lang.String" resultMap="goodsTypeResultMap">
+    select t.id,t.type_name,t.create_time,t.is_use
+	from goods_type t
+    where is_use=1 and t.type_name like "%"#{arg0}"%" order by create_time desc
+  </select>
+</mapper>

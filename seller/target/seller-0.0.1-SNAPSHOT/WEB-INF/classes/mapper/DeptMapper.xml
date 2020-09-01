@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.chich.seller.dao.DeptDao" >
+<resultMap id="deptResultMap" type="cn.chich.seller.bean.Dept" >
+    <id column="id" property="id" jdbcType="INTEGER"/>
+    <result column="name" property="name" jdbcType="VARCHAR"/>
+    <result column="school_id" property="schoolId" jdbcType="INTEGER"/>
+    <result column="is_use" property="isUse" jdbcType="INTEGER"/>
+</resultMap>
+
+  <select id="getDeptOpt" parameterType="java.lang.Integer" resultMap="deptResultMap">
+    select id,name,is_use from dept where is_use = 1 and dept.school_id=#{arg0}
+  </select>
+  <select id="getAllDept" resultMap="deptResultMap">
+    select id,name,school_id,is_use from dept where is_use = 1
+  </select>
+  <select id="getAllDeptById" parameterType="java.lang.Integer" resultMap="deptResultMap">
+    select id,name,school_id,is_use from dept where is_use = 1 and dept.school_id=#{arg0}
+  </select>
+</mapper>
