@@ -141,7 +141,7 @@ page{
     justify-content: center;
     align-items: center;
     color: #fff;
-      background: -webkit-linear-gradient(left,pink,lightblue,skyblue);
+   background: -webkit-linear-gradient(left,yellow,orange,pink);
     border-radius: 14rpx;
     font-size: 38rpx;
 }
