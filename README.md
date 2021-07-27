@@ -5,10 +5,10 @@ Host link: mysecond.xyz
 ## View
 
 <p align="center">
-  <img src="https://github.com/WangKehanK/Maimai/blob/master/screenshot/login.png" width="100"/>
-  <img src="https://github.com/WangKehanK/Maimai/blob/master/screenshot/home.png" width="100"/>
-  <img src="https://github.com/WangKehanK/Maimai/blob/master/screenshot/home2.png" width="100"/>
-  <img src="https://github.com/WangKehanK/Maimai/blob/master/screenshot/me.png" width="100"/>
+  <img src="https://github.com/WangKehanK/Maimai/blob/master/screenshot/login.png" width="150"/>
+  <img src="https://github.com/WangKehanK/Maimai/blob/master/screenshot/home.png" width="150"/>
+  <img src="https://github.com/WangKehanK/Maimai/blob/master/screenshot/home2.png" width="150"/>
+  <img src="https://github.com/WangKehanK/Maimai/blob/master/screenshot/me.png" width="150"/>
 </p>
 
 ## Front end
