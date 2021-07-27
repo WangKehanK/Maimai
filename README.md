@@ -3,14 +3,17 @@ Aiming to solve the real-world problem that international students has no place 
 Host link: mysecond.xyz
 
 ## View
-![home page](https://github.com/WangKehanK/Maimai/blob/master/screenshot/login.png)
-![home page](https://github.com/WangKehanK/Maimai/blob/master/screenshot/home.png)
-![home page](https://github.com/WangKehanK/Maimai/blob/master/screenshot/home2.png)
-![home page](https://github.com/WangKehanK/Maimai/blob/master/screenshot/me.png)
 
+<p align="center">
+  <img src="https://github.com/WangKehanK/PetCom/blob/master/screenshot/login.png" width="100"/>
+  <img src="https://github.com/WangKehanK/PetCom/blob/master/screenshot/home.png" width="100"/>
+  <img src="https://github.com/WangKehanK/PetCom/blob/master/screenshot/home2.png" width="100"/>
+  <img src="https://github.com/WangKehanK/PetCom/blob/master/screenshot/me.png" width="100"/>
+</p>
 
 ## Front end
 - Wechat Build-in
+- Taro.js (React.js-based framework)
 
 ## Server
 
