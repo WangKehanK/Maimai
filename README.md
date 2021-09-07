@@ -1,7 +1,7 @@
 # Maimai
 Aiming to solve the real-world problem that international students has no place to sell their second-hand products, especially furniture.
-Host link: mysecond.xyz
 
+Mobile version: [link](https://github.com/WangKehanK/MaiMai-Trader)
 ## View
 
 <p align="center">
